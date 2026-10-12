@@ -1,0 +1,19 @@
+{
+ "text": "The flood on 2026-08-26 affected the Upper Trishuli valley from Syabrubesi to Rasuwagadhi, covering about 1.73 km² of the 191.5 km² study area, with high‑confidence water on 0.47 km² and new open water on 0.15 km² while debris spread over 1.58 km². Of the 3,396 mapped buildings, 358 (11%) were hit, and 14.2 km of the 112.7 km road network and 14 of 16 bridges were damaged, cutting off 16 settlements. The most urgent cut‑off villages are Resuo (priority 88), Rasuwa Gadhi (priority 78), Aamachhodingmo (priority 69), Bahun Danda (priority 62), Lingling (priority 62), Dalphedi (priority 58), (unnamed) (priority 58), and Pajung (priority 57). The satellite maps saw the entire valley floor (100%) but cannot show small houses, footbridges, steep‑slope details, or any damage beyond the valley floor (10 m pixels miss small houses and footbridges; steep slopes are partly hidden from radar; only the valley floor is checked).",
+ "by": "Groq · openai/gpt-oss-120b",
+ "checked": true,
+ "proof": {
+  "model_text": "The flood on {flood_date} affected the Upper Trishuli valley from Syabrubesi to Rasuwagadhi, covering about {flood_km2} of the {area_km2} study area, with high‑confidence water on {flood_high_km2} and new open water on {new_water_km2} while debris spread over {debris_km2}. Of the {buildings_total} mapped buildings, {buildings_hit} ({buildings_hit_pct}) were hit, and {roads_flooded_km} of the {roads_total_km} road network and {bridges_hit} of {bridges_total} bridges were damaged, cutting off {cut_off_count} settlements. The most urgent cut‑off villages are {cutoff1_name} (priority {cutoff1_priority}), {cutoff2_name} (priority {cutoff2_priority}), {cutoff3_name} (priority {cutoff3_priority}), {cutoff4_name} (priority {cutoff4_priority}), {cutoff5_name} (priority {cutoff5_priority}), {cutoff6_name} (priority {cutoff6_priority}), {cutoff7_name} (priority {cutoff7_priority}), and {cutoff8_name} (priority {cutoff8_priority}). The satellite maps saw the entire valley floor ({valley_seen_pct}) but cannot show small houses, footbridges, steep‑slope details, or any damage beyond the valley floor ({limits}).",
+  "values_inserted_by_code": 32,
+  "digits_written_by_model": 0,
+  "rejected_drafts": [
+   {
+    "text": "The flood on {flood_date} affected the Upper Trishuli valley from Syabrubesi to Rasuwagadhi, covering about {flood_km2} of the {area_km2} study area, with high‑confidence water on {flood_high_km2} and new open water on {new_water_km2} while debris spread over {debris_km2}. Of the 3,396 mapped buildings, 358 ({buildings_hit_pct}) were hit, and 14.2 km of the 112.7 km road network and 14 of 16 bridges were damaged, cutting off 16 settlements. The most urgent cut‑off villages are Resuo (priority {cutoff1_priority}), Rasuwa Gadhi (priority {cutoff2_priority}), Aamachhodingmo (priority {cutoff3_priority}), Bahun Danda (priority {cutoff4_priority}), Lingling (priority {cutoff5_priority}), Dalphedi (priority {cutoff6_priority}), an unnamed settlement (priority {cutoff7_priority}), and Pajung (priority {cutoff8_priority}). The satellite maps saw the entire valley floor ({valley_seen_pct}) but cannot show small houses, footbridges, steep‑slope details, or any damage beyond the valley floor ({limits}).",
+    "problems": [
+     "the model wrote a digit itself"
+    ]
+   }
+  ]
+ },
+ "note": "Written by the language model; every number was inserted by our code from the maps."
+}

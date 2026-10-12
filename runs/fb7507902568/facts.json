@@ -1,0 +1,1406 @@
+{
+  "meta": {
+    "run_id": "fb7507902568",
+    "area_name": "Upper Trishuli: Syabrubesi to Rasuwagadhi",
+    "bbox": [
+      85.3,
+      28.13,
+      85.4,
+      28.3
+    ],
+    "flood_date": "2026-08-26",
+    "flood_start_utc": "2026-08-25T18:00+00:00",
+    "resolution_m": 10.0,
+    "area_km2": 191.5,
+    "data_source": "Copernicus Data Space Ecosystem (Sentinel Hub API)",
+    "generated_utc": "2026-10-03T11:14:03+00:00",
+    "runtime_s": 81.3,
+    "version": "0.1"
+  },
+  "images": {
+    "radar": [
+      {
+        "track": 85,
+        "direction": "ascending",
+        "before": [
+          "2026-08-16",
+          "2026-08-04",
+          "2026-07-23"
+        ],
+        "after": [
+          "2026-08-28",
+          "2026-09-09"
+        ],
+        "valley_seen_pct": 99.4,
+        "shift_db": [
+          -0.17,
+          -0.42
+        ],
+        "noise_db": 0.91,
+        "water_threshold_db": -16.0,
+        "water_threshold_method": "default"
+      },
+      {
+        "track": 121,
+        "direction": "descending",
+        "before": [
+          "2026-08-19",
+          "2026-08-07",
+          "2026-07-26"
+        ],
+        "after": [
+          "2026-08-31",
+          "2026-09-12"
+        ],
+        "valley_seen_pct": 0.6,
+        "shift_db": [
+          -0.12,
+          0.61
+        ],
+        "noise_db": 0.88,
+        "water_threshold_db": -16.0,
+        "water_threshold_method": "default"
+      }
+    ],
+    "optical": {
+      "before": "2026-08-12",
+      "after": "2026-08-27",
+      "clear_valley_pct": 67.9
+    }
+  },
+  "flood": {
+    "valley_km2": 7.876,
+    "valley_seen_pct": 99.6,
+    "flood_km2": 1.728,
+    "high_km2": 0.475,
+    "medium_km2": 1.253,
+    "low_km2": 0.17,
+    "new_water_km2": 0.146,
+    "debris_km2": 1.582,
+    "optical_clear_valley_pct": 67.9
+  },
+  "buildings": {
+    "total": 3396,
+    "hit": 358,
+    "hit_high_confidence": 180
+  },
+  "roads": {
+    "total_km": 112.7,
+    "flooded_km": 14.2,
+    "cut_pieces": 540
+  },
+  "bridges": {
+    "total": 16,
+    "hit": 14,
+    "hit_list": [
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.33247,
+        "lat": 28.15767
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.35309,
+        "lat": 28.20007
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.37582,
+        "lat": 28.26581
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.34205,
+        "lat": 28.18137
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.3432,
+        "lat": 28.18266
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.3618,
+        "lat": 28.22643
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "trunk",
+        "hit": true,
+        "lon": 85.37164,
+        "lat": 28.28518
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "trunk",
+        "hit": true,
+        "lon": 85.36963,
+        "lat": 28.28605
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "trunk",
+        "hit": true,
+        "lon": 85.35451,
+        "lat": 28.2871
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "unclassified",
+        "hit": true,
+        "lon": 85.36423,
+        "lat": 28.25193
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "unclassified",
+        "hit": true,
+        "lon": 85.34015,
+        "lat": 28.164
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "unclassified",
+        "hit": true,
+        "lon": 85.35823,
+        "lat": 28.24074
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "unclassified",
+        "hit": true,
+        "lon": 85.36518,
+        "lat": 28.25576
+      },
+      {
+        "name": "",
+        "name_ne": "",
+        "road_type": "primary",
+        "hit": true,
+        "lon": 85.37821,
+        "lat": 28.27827
+      }
+    ]
+  },
+  "hospitals": {
+    "in_area": 1,
+    "hit": 0,
+    "list": [
+      {
+        "name": "Hospital / health post",
+        "name_ne": "",
+        "lon": 85.33648,
+        "lat": 28.14219,
+        "in_area": true,
+        "hit": false
+      }
+    ]
+  },
+  "settlements": {
+    "total": 23,
+    "cut_off": 16,
+    "detour": 0,
+    "ok": 5,
+    "no_road": 2,
+    "center_flooded": 1,
+    "cut_off_list": [
+      {
+        "name": "Resuo",
+        "name_ne": "",
+        "place": "village",
+        "lon": 85.37822,
+        "lat": 28.28032,
+        "population_osm": null,
+        "buildings_nearby": 87,
+        "buildings_hit_nearby": 20,
+        "center_flooded": true,
+        "road_km_from_center": 0.03,
+        "dist_before_km": 25.0,
+        "reach_before": "town: Kyirong",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 48.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "unclassified",
+            "lon": 85.37812,
+            "lat": 28.28006
+          },
+          {
+            "length_m": 116.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37662,
+            "lat": 28.28173
+          },
+          {
+            "length_m": 68.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37557,
+            "lat": 28.28295
+          },
+          {
+            "length_m": 156.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37452,
+            "lat": 28.28377
+          },
+          {
+            "length_m": 21.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37359,
+            "lat": 28.28429
+          },
+          {
+            "length_m": 170.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37257,
+            "lat": 28.28475
+          },
+          {
+            "length_m": 94.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.3712,
+            "lat": 28.28558
+          },
+          {
+            "length_m": 260.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.36869,
+            "lat": 28.28613
+          },
+          {
+            "length_m": 94.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.36705,
+            "lat": 28.28615
+          },
+          {
+            "length_m": 373.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.36377,
+            "lat": 28.28569
+          },
+          {
+            "length_m": 69.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.35982,
+            "lat": 28.28583
+          },
+          {
+            "length_m": 152.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.35787,
+            "lat": 28.28638
+          },
+          {
+            "length_m": 312.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.3551,
+            "lat": 28.28701
+          },
+          {
+            "length_m": 200.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.35251,
+            "lat": 28.28681
+          },
+          {
+            "length_m": 97.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.34857,
+            "lat": 28.2948
+          },
+          {
+            "length_m": 180.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.34834,
+            "lat": 28.29865
+          }
+        ],
+        "priority": 88,
+        "priority_parts": {
+          "size": 75,
+          "damage": 100,
+          "isolation": 100,
+          "remote": 83
+        }
+      },
+      {
+        "name": "Rasuwa Gadhi",
+        "name_ne": "रसुवागढी",
+        "place": "hamlet",
+        "lon": 85.37778,
+        "lat": 28.27777,
+        "population_osm": null,
+        "buildings_nearby": 107,
+        "buildings_hit_nearby": 32,
+        "center_flooded": false,
+        "road_km_from_center": 0.04,
+        "dist_before_km": 25.2,
+        "reach_before": "town: Kyirong",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 103.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.37804,
+            "lat": 28.27871
+          },
+          {
+            "length_m": 116.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37662,
+            "lat": 28.28173
+          },
+          {
+            "length_m": 68.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37557,
+            "lat": 28.28295
+          },
+          {
+            "length_m": 156.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37452,
+            "lat": 28.28377
+          },
+          {
+            "length_m": 21.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37359,
+            "lat": 28.28429
+          },
+          {
+            "length_m": 170.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.37257,
+            "lat": 28.28475
+          },
+          {
+            "length_m": 94.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.3712,
+            "lat": 28.28558
+          },
+          {
+            "length_m": 260.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.36869,
+            "lat": 28.28613
+          },
+          {
+            "length_m": 94.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.36705,
+            "lat": 28.28615
+          },
+          {
+            "length_m": 373.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.36377,
+            "lat": 28.28569
+          },
+          {
+            "length_m": 69.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.35982,
+            "lat": 28.28583
+          },
+          {
+            "length_m": 152.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.35787,
+            "lat": 28.28638
+          },
+          {
+            "length_m": 312.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.3551,
+            "lat": 28.28701
+          },
+          {
+            "length_m": 200.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.35251,
+            "lat": 28.28681
+          },
+          {
+            "length_m": 97.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.34857,
+            "lat": 28.2948
+          },
+          {
+            "length_m": 180.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "trunk",
+            "lon": 85.34834,
+            "lat": 28.29865
+          }
+        ],
+        "priority": 78,
+        "priority_parts": {
+          "size": 78,
+          "damage": 60,
+          "isolation": 100,
+          "remote": 84
+        }
+      },
+      {
+        "name": "Aamachhodingmo",
+        "name_ne": "आमाछोदिङ्मो",
+        "place": "village",
+        "lon": 85.31309,
+        "lat": 28.17058,
+        "population_osm": null,
+        "buildings_nearby": 366,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.08,
+        "dist_before_km": 27.9,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 16.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "tertiary",
+            "lon": 85.33704,
+            "lat": 28.16397
+          },
+          {
+            "length_m": 222.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33692,
+            "lat": 28.16317
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 69,
+        "priority_parts": {
+          "size": 99,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 93
+        }
+      },
+      {
+        "name": "Bahun Danda",
+        "name_ne": "बाहुनडाँडा",
+        "place": "hamlet",
+        "lon": 85.32194,
+        "lat": 28.16655,
+        "population_osm": null,
+        "buildings_nearby": 152,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.01,
+        "dist_before_km": 24.4,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 16.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "tertiary",
+            "lon": 85.33704,
+            "lat": 28.16397
+          },
+          {
+            "length_m": 222.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33692,
+            "lat": 28.16317
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 62,
+        "priority_parts": {
+          "size": 84,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 81
+        }
+      },
+      {
+        "name": "Lingling",
+        "name_ne": "लिङलिङ",
+        "place": "hamlet",
+        "lon": 85.3577,
+        "lat": 28.21085,
+        "population_osm": null,
+        "buildings_nearby": 135,
+        "buildings_hit_nearby": 3,
+        "center_flooded": false,
+        "road_km_from_center": 0.04,
+        "dist_before_km": 22.2,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 157.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "unclassified",
+            "lon": 85.35481,
+            "lat": 28.21139
+          },
+          {
+            "length_m": 250.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.35477,
+            "lat": 28.20855
+          },
+          {
+            "length_m": 187.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.3531,
+            "lat": 28.20032
+          },
+          {
+            "length_m": 484.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.35065,
+            "lat": 28.19515
+          },
+          {
+            "length_m": 456.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34655,
+            "lat": 28.18802
+          },
+          {
+            "length_m": 2757.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34231,
+            "lat": 28.16702
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 62,
+        "priority_parts": {
+          "size": 82,
+          "damage": 4,
+          "isolation": 100,
+          "remote": 74
+        }
+      },
+      {
+        "name": "Dalphedi",
+        "name_ne": "डाल्फेडी",
+        "place": "hamlet",
+        "lon": 85.35316,
+        "lat": 28.22901,
+        "population_osm": null,
+        "buildings_nearby": 89,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.84,
+        "dist_before_km": 23.6,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 212.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.3618,
+            "lat": 28.22656
+          },
+          {
+            "length_m": 168.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.35515,
+            "lat": 28.21456
+          },
+          {
+            "length_m": 243.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.35497,
+            "lat": 28.21203
+          },
+          {
+            "length_m": 250.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.35477,
+            "lat": 28.20855
+          },
+          {
+            "length_m": 187.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.3531,
+            "lat": 28.20032
+          },
+          {
+            "length_m": 484.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.35065,
+            "lat": 28.19515
+          },
+          {
+            "length_m": 456.0,
+            "bridge": false,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34655,
+            "lat": 28.18802
+          },
+          {
+            "length_m": 2757.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34231,
+            "lat": 28.16702
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 58,
+        "priority_parts": {
+          "size": 75,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 79
+        }
+      },
+      {
+        "name": "(unnamed)",
+        "name_ne": "",
+        "place": "hamlet",
+        "lon": 85.34605,
+        "lat": 28.17678,
+        "population_osm": null,
+        "buildings_nearby": 23,
+        "buildings_hit_nearby": 4,
+        "center_flooded": false,
+        "road_km_from_center": 0.07,
+        "dist_before_km": 18.6,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 2757.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34231,
+            "lat": 28.16702
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 58,
+        "priority_parts": {
+          "size": 53,
+          "damage": 35,
+          "isolation": 100,
+          "remote": 62
+        }
+      },
+      {
+        "name": "Pajung",
+        "name_ne": "पाजुङ",
+        "place": "hamlet",
+        "lon": 85.32756,
+        "lat": 28.18603,
+        "population_osm": null,
+        "buildings_nearby": 82,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.07,
+        "dist_before_km": 21.6,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 3199.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34218,
+            "lat": 28.17929
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 57,
+        "priority_parts": {
+          "size": 74,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 72
+        }
+      },
+      {
+        "name": "Surka",
+        "name_ne": "सुर्का",
+        "place": "hamlet",
+        "lon": 85.36193,
+        "lat": 28.17107,
+        "population_osm": null,
+        "buildings_nearby": 70,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.57,
+        "dist_before_km": 23.3,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 2757.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34231,
+            "lat": 28.16702
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 56,
+        "priority_parts": {
+          "size": 71,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 78
+        }
+      },
+      {
+        "name": "Khangjim",
+        "name_ne": "खाङजिम",
+        "place": "hamlet",
+        "lon": 85.35914,
+        "lat": 28.17681,
+        "population_osm": 300,
+        "buildings_nearby": 67,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.09,
+        "dist_before_km": 23.5,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 2757.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34231,
+            "lat": 28.16702
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 56,
+        "priority_parts": {
+          "size": 70,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 78
+        }
+      },
+      {
+        "name": "Bhrajam",
+        "name_ne": "भ्रजम",
+        "place": "hamlet",
+        "lon": 85.31696,
+        "lat": 28.18774,
+        "population_osm": null,
+        "buildings_nearby": 66,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.02,
+        "dist_before_km": 23.1,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 3199.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34218,
+            "lat": 28.17929
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 56,
+        "priority_parts": {
+          "size": 70,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 77
+        }
+      },
+      {
+        "name": "Brimdang",
+        "name_ne": "ब्रिमडाङ",
+        "place": "hamlet",
+        "lon": 85.30989,
+        "lat": 28.20364,
+        "population_osm": null,
+        "buildings_nearby": 38,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.02,
+        "dist_before_km": 45.0,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 16.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "tertiary",
+            "lon": 85.33704,
+            "lat": 28.16397
+          },
+          {
+            "length_m": 222.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33692,
+            "lat": 28.16317
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 54,
+        "priority_parts": {
+          "size": 61,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 100
+        }
+      },
+      {
+        "name": "Bhanjyang",
+        "name_ne": "भञ्ज्याङ",
+        "place": "hamlet",
+        "lon": 85.3552,
+        "lat": 28.16862,
+        "population_osm": null,
+        "buildings_nearby": 41,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.25,
+        "dist_before_km": 22.1,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 2757.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34231,
+            "lat": 28.16702
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 52,
+        "priority_parts": {
+          "size": 62,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 74
+        }
+      },
+      {
+        "name": "Nagthali",
+        "name_ne": "नागथली",
+        "place": "hamlet",
+        "lon": 85.31583,
+        "lat": 28.2079,
+        "population_osm": null,
+        "buildings_nearby": 24,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.77,
+        "dist_before_km": 45.0,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 16.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "tertiary",
+            "lon": 85.33704,
+            "lat": 28.16397
+          },
+          {
+            "length_m": 222.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33692,
+            "lat": 28.16317
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 51,
+        "priority_parts": {
+          "size": 54,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 100
+        }
+      },
+      {
+        "name": "(unnamed)",
+        "name_ne": "",
+        "place": "village",
+        "lon": 85.31082,
+        "lat": 28.19377,
+        "population_osm": null,
+        "buildings_nearby": 27,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.61,
+        "dist_before_km": 24.2,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 3199.0,
+            "bridge": true,
+            "road_name": "",
+            "road_type": "primary",
+            "lon": 85.34218,
+            "lat": 28.17929
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 50,
+        "priority_parts": {
+          "size": 56,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 81
+        }
+      },
+      {
+        "name": "Tatopani",
+        "name_ne": "तातोपानी",
+        "place": "hamlet",
+        "lon": 85.29882,
+        "lat": 28.22007,
+        "population_osm": null,
+        "buildings_nearby": 1,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.01,
+        "dist_before_km": 42.8,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "status": "cut_off",
+        "dist_after_km": null,
+        "reach_after": null,
+        "breaks": [
+          {
+            "length_m": 16.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "tertiary",
+            "lon": 85.33704,
+            "lat": 28.16397
+          },
+          {
+            "length_m": 222.0,
+            "bridge": false,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33692,
+            "lat": 28.16317
+          },
+          {
+            "length_m": 706.0,
+            "bridge": true,
+            "road_name": "Pasang Lhamu Highway",
+            "road_type": "primary",
+            "lon": 85.33416,
+            "lat": 28.15909
+          }
+        ],
+        "priority": 35,
+        "priority_parts": {
+          "size": 12,
+          "damage": 0,
+          "isolation": 100,
+          "remote": 100
+        }
+      }
+    ],
+    "detour_list": [],
+    "other_list": [
+      {
+        "name": "Sano Bharkhu",
+        "name_ne": "ठुलो भार्खु",
+        "place": "hamlet",
+        "lon": 85.31212,
+        "lat": 28.12978,
+        "population_osm": null,
+        "buildings_nearby": 65,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.03,
+        "dist_before_km": 6.9,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "dist_after_km": 6.9,
+        "reach_after": "hospital: Rasuwa District Hospital",
+        "status": "ok",
+        "breaks": []
+      },
+      {
+        "name": "Dursagang",
+        "name_ne": "दुर्सागाङ",
+        "place": "hamlet",
+        "lon": 85.35574,
+        "lat": 28.13448,
+        "population_osm": null,
+        "buildings_nearby": 138,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.83,
+        "dist_before_km": 3.5,
+        "reach_before": "hospital: Hospital / health post",
+        "dist_after_km": 3.5,
+        "reach_after": "hospital: Hospital / health post",
+        "status": "ok",
+        "breaks": []
+      },
+      {
+        "name": "Sherpagaun",
+        "name_ne": "शेर्पागाउँ",
+        "place": "hamlet",
+        "lon": 85.39705,
+        "lat": 28.1625,
+        "population_osm": null,
+        "buildings_nearby": 34,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "status": "no_road",
+        "dist_before_km": null,
+        "dist_after_km": null,
+        "reach_before": null,
+        "reach_after": null,
+        "breaks": []
+      },
+      {
+        "name": "Brabal",
+        "name_ne": "ब्राबल",
+        "place": "village",
+        "lon": 85.33916,
+        "lat": 28.14357,
+        "population_osm": null,
+        "buildings_nearby": 83,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.04,
+        "dist_before_km": 0.5,
+        "reach_before": "hospital: Hospital / health post",
+        "dist_after_km": 0.5,
+        "reach_after": "hospital: Hospital / health post",
+        "status": "ok",
+        "breaks": []
+      },
+      {
+        "name": "Sano Bharkhu",
+        "name_ne": "सानाे भार्खु",
+        "place": "hamlet",
+        "lon": 85.31971,
+        "lat": 28.13744,
+        "population_osm": null,
+        "buildings_nearby": 93,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.02,
+        "dist_before_km": 9.4,
+        "reach_before": "hospital: Rasuwa District Hospital",
+        "dist_after_km": 9.4,
+        "reach_after": "hospital: Rasuwa District Hospital",
+        "status": "ok",
+        "breaks": []
+      },
+      {
+        "name": "Dalgaun",
+        "name_ne": "",
+        "place": "hamlet",
+        "lon": 85.34215,
+        "lat": 28.25576,
+        "population_osm": null,
+        "buildings_nearby": 0,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "status": "no_road",
+        "dist_before_km": null,
+        "dist_after_km": null,
+        "reach_before": null,
+        "reach_after": null,
+        "breaks": []
+      },
+      {
+        "name": "Thulo Syābru",
+        "name_ne": "ठुलो स्याप्रु",
+        "place": "hamlet",
+        "lon": 85.36069,
+        "lat": 28.14304,
+        "population_osm": null,
+        "buildings_nearby": 228,
+        "buildings_hit_nearby": 0,
+        "center_flooded": false,
+        "road_km_from_center": 0.03,
+        "dist_before_km": 3.8,
+        "reach_before": "hospital: Hospital / health post",
+        "dist_after_km": 3.8,
+        "reach_after": "hospital: Hospital / health post",
+        "status": "ok",
+        "breaks": []
+      }
+    ]
+  },
+  "osm": {
+    "snapshot_date": "2026-07-27",
+    "source": "Overpass API (dated query)",
+    "buildings": 3396,
+    "roads": 726,
+    "places": 128
+  },
+  "warnings": [],
+  "attribution": [
+    "Contains modified Copernicus Sentinel data 2026.",
+    "Produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.",
+    "© OpenStreetMap contributors."
+  ]
+}

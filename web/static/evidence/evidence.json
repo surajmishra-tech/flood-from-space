@@ -1,0 +1,298 @@
+{
+ "main": {
+  "run_id": "fb7507902568",
+  "name": "Upper Trishuli: Syabrubesi to Rasuwagadhi",
+  "date": "2026-08-26",
+  "flood_km2": 1.728,
+  "debris_km2": 1.582,
+  "new_water_km2": 0.146,
+  "buildings_hit": 358,
+  "buildings_total": 3396,
+  "road_km": 14.2,
+  "bridges_hit": 14,
+  "bridges_total": 16,
+  "cut_off": 16,
+  "detour": 0,
+  "valley_seen_pct": 99.6,
+  "resolution_m": 10.0
+ },
+ "radar": {
+  "tracks": [
+   {
+    "track": 85,
+    "direction": "ascending",
+    "before": [
+     "2026-08-16",
+     "2026-08-04",
+     "2026-07-23"
+    ],
+    "after": [
+     "2026-08-28",
+     "2026-09-09"
+    ],
+    "valley_seen_pct": 99.4,
+    "shift_db": [
+     -0.17,
+     -0.42
+    ],
+    "noise_db": 0.91,
+    "water_threshold_db": -16.0,
+    "water_threshold_method": "default"
+   },
+   {
+    "track": 121,
+    "direction": "descending",
+    "before": [
+     "2026-08-19",
+     "2026-08-07",
+     "2026-07-26"
+    ],
+    "after": [
+     "2026-08-31",
+     "2026-09-12"
+    ],
+    "valley_seen_pct": 0.6,
+    "shift_db": [
+     -0.12,
+     0.61
+    ],
+    "noise_db": 0.88,
+    "water_threshold_db": -16.0,
+    "water_threshold_method": "default"
+   }
+  ],
+  "zoom_km": 3.8,
+  "zoom_near": "Rasuwa Gadhi"
+ },
+ "optical": {
+  "before": "2026-08-12",
+  "after": "2026-08-27",
+  "clear_valley_pct": 67.9
+ },
+ "ems": {
+  "rows": [
+   {
+    "place": "Syabrubesi",
+    "aoi": "AOI01",
+    "ems_km2": 1.111,
+    "ours_km2": 0.41,
+    "precision": 0.998,
+    "recall": 0.369,
+    "f1": 0.539,
+    "f1_20m": 0.732,
+    "destroyed_found_pct": 87.9,
+    "ems_destroyed": 323,
+    "bridges_found": 5,
+    "bridges_ems": 5
+   },
+   {
+    "place": "Timure",
+    "aoi": "AOI02",
+    "ems_km2": 1.294,
+    "ours_km2": 0.429,
+    "precision": 0.997,
+    "recall": 0.331,
+    "f1": 0.497,
+    "f1_20m": 0.723,
+    "destroyed_found_pct": 81.5,
+    "ems_destroyed": 372,
+    "bridges_found": 1,
+    "bridges_ems": 1
+   },
+   {
+    "place": "Bidur",
+    "aoi": "AOI03",
+    "ems_km2": 7.014,
+    "ours_km2": 5.086,
+    "precision": 0.94,
+    "recall": 0.682,
+    "f1": 0.791,
+    "f1_20m": 0.919,
+    "destroyed_found_pct": 98.5,
+    "ems_destroyed": 2479,
+    "bridges_found": 25,
+    "bridges_ems": 26
+   },
+   {
+    "place": "Phosretar",
+    "aoi": "AOI05",
+    "ems_km2": 6.393,
+    "ours_km2": 2.702,
+    "precision": 0.986,
+    "recall": 0.417,
+    "f1": 0.586,
+    "f1_20m": 0.739,
+    "destroyed_found_pct": 79.3,
+    "ems_destroyed": 397,
+    "bridges_found": 12,
+    "bridges_ems": 22
+   }
+  ],
+  "pooled": {
+   "precision": 0.96,
+   "recall": 0.52,
+   "f1": 0.68,
+   "ems_km2": 15.8,
+   "ours_km2": 8.6
+  }
+ },
+ "control": {
+  "run_id": "fbdf29eca776",
+  "date": "2026-04-15",
+  "flood_km2": 0.061,
+  "buildings_hit": 2,
+  "bridges_hit": 0,
+  "cut_off": 0
+ },
+ "floods": [
+  {
+   "run_id": "70e0dab8bf4b",
+   "place": "Melamchi, Nepal",
+   "kind": "flash flood and debris flow",
+   "date": "2021-06-15",
+   "img": "flood_70e0dab8bf4b.jpg",
+   "flood_km2": 1.979,
+   "buildings_hit": 162,
+   "bridges_hit": 5,
+   "cut_off": 1,
+   "detour": 13
+  },
+  {
+   "run_id": "cd38db83e51a",
+   "place": "Teesta, Sikkim (India)",
+   "kind": "glacial lake outburst",
+   "date": "2023-10-03",
+   "img": "flood_cd38db83e51a.jpg",
+   "flood_km2": 3.002,
+   "buildings_hit": 183,
+   "bridges_hit": 9,
+   "cut_off": 8,
+   "detour": 0
+  },
+  {
+   "run_id": "8a4d3f927a62",
+   "place": "Rishiganga, Chamoli (India)",
+   "kind": "rock-ice avalanche flood",
+   "date": "2021-02-07",
+   "img": "flood_8a4d3f927a62.jpg",
+   "flood_km2": 1.106,
+   "buildings_hit": 0,
+   "bridges_hit": 2,
+   "cut_off": 6,
+   "detour": 1
+  },
+  {
+   "run_id": "11da0dff186b",
+   "place": "Rasuwa, Nepal",
+   "kind": "glacial lake outburst, same valley",
+   "date": "2025-07-08",
+   "img": "flood_11da0dff186b.jpg",
+   "flood_km2": 0.884,
+   "buildings_hit": 213,
+   "bridges_hit": 8,
+   "cut_off": 14,
+   "detour": 0
+  },
+  {
+   "run_id": "e600e350435e",
+   "place": "Bidur, lower Trishuli",
+   "kind": "same flood, 60 km downstream",
+   "date": "2026-08-26",
+   "img": "flood_e600e350435e.jpg",
+   "flood_km2": 5.83,
+   "buildings_hit": 1711,
+   "bridges_hit": 19,
+   "cut_off": 4,
+   "detour": 2
+  },
+  {
+   "run_id": "452a6cfeaf43",
+   "place": "Silchar, Assam (India)",
+   "kind": "monsoon river flood on flat land",
+   "date": "2022-06-20",
+   "img": "flood_452a6cfeaf43.jpg",
+   "flood_km2": 102.93,
+   "buildings_hit": 9,
+   "bridges_hit": 62,
+   "cut_off": 0,
+   "detour": 0
+  }
+ ],
+ "priority": {
+  "weights": {
+   "size": 40,
+   "damage": 30,
+   "isolation": 20,
+   "remoteness": 10
+  },
+  "top": [
+   {
+    "name": "Resuo",
+    "name_ne": "",
+    "priority": 88,
+    "parts": {
+     "size": 75,
+     "damage": 100,
+     "isolation": 100,
+     "remote": 83
+    },
+    "buildings": 87,
+    "hit": 20,
+    "breaks": 16,
+    "km_before": 25.0
+   },
+   {
+    "name": "Rasuwa Gadhi",
+    "name_ne": "रसुवागढी",
+    "priority": 78,
+    "parts": {
+     "size": 78,
+     "damage": 60,
+     "isolation": 100,
+     "remote": 84
+    },
+    "buildings": 107,
+    "hit": 32,
+    "breaks": 16,
+    "km_before": 25.2
+   },
+   {
+    "name": "Aamachhodingmo",
+    "name_ne": "आमाछोदिङ्मो",
+    "priority": 69,
+    "parts": {
+     "size": 99,
+     "damage": 0,
+     "isolation": 100,
+     "remote": 93
+    },
+    "buildings": 366,
+    "hit": 0,
+    "breaks": 3,
+    "km_before": 27.9
+   },
+   {
+    "name": "Bahun Danda",
+    "name_ne": "बाहुनडाँडा",
+    "priority": 62,
+    "parts": {
+     "size": 84,
+     "damage": 0,
+     "isolation": 100,
+     "remote": 81
+    },
+    "buildings": 152,
+    "hit": 0,
+    "breaks": 3,
+    "km_before": 24.4
+   }
+  ]
+ },
+ "ai": {
+  "question": "Which villages need help first, and why?",
+  "answer": "The villages that need help first are Resuo and Rasuwa Gadhi because they have the highest rescue priority scores of 88 and 78. They also have many nearby buildings (87 and 107) and many broken road sections on their old routes (16 and 16). The next villages in order are Aamachhodingmo, Bahun Danda, Lingling and Dalphedi with lower priority scores. The map can show these priority scores, building counts, road breaks and distances, but cannot provide casualty numbers or other details.",
+  "model_text": "The villages that need help first are {cutoff1_name} and {cutoff2_name} because they have the highest rescue priority scores of {cutoff1_priority} and {cutoff2_priority}. They also have many nearby buildings ({cutoff1_buildings} and {cutoff2_buildings}) and many broken road sections on their old routes ({cutoff1_breaks} and {cutoff2_breaks}). The next villages in order are {cutoff3_name}, {cutoff4_name}, {cutoff5_name} and {cutoff6_name} with lower priority scores. The map can show these priority scores, building counts, road breaks and distances, but cannot provide casualty numbers or other details.",
+  "values": 12,
+  "by": "Groq · openai/gpt-oss-120b"
+ }
+}

@@ -1,0 +1,8 @@
+# Keep binary files byte-for-byte (stops Windows line-ending changes from breaking them)
+*.pdf binary
+*.png binary
+*.jpg binary
+*.mp4 binary
+
+# Windows batch files need CRLF line endings
+*.bat text eol=crlf

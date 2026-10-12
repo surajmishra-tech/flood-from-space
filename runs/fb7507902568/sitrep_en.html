@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flood situation report - Upper Trishuli: Syabrubesi to Rasuwagadhi</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#1b1f24; --muted:#5b6470; --line:#d9dee5; --accent:#b4471a; --bg:#ffffff; }
+@page { size: A4; margin: 10mm; }
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', Roboto, Arial, sans-serif; color: var(--ink); background: var(--bg); margin: 0; font-size: 11.5px; line-height: 1.45; }
+.page { max-width: 190mm; margin: 0 auto; padding: 8px 12px; }
+header { display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 3px solid var(--accent); padding-bottom: 6px; }
+h1 { margin: 0; font-size: 20px; }
+.meta { color: var(--muted); font-size: 11px; text-align: right; }
+.tiles { display:grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 8px 0; }
+.tile { border:1px solid var(--line); border-radius:6px; padding:6px 7px; }
+.tile b { display:block; font-size: 17px; }
+.tile span { color: var(--muted); font-size: 10px; }
+.tile small { font-size: 10px; color: var(--muted); font-weight: 400; }
+.grid { display:grid; grid-template-columns: 1.05fr 1fr; gap: 10px; }
+h2 { font-size: 12.5px; margin: 6px 0 4px; color: var(--accent); }
+img.map { width: 100%; border:1px solid var(--line); border-radius: 4px; }
+table { width:100%; border-collapse: collapse; font-size: 10.5px; }
+th, td { border-bottom:1px solid var(--line); padding: 3px 4px; text-align:left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+.note { color: var(--muted); font-size: 9.5px; }
+.badge { display:inline-block; background:#eef6ee; color:#1d6b2a; border:1px solid #bfe0c3; border-radius: 10px; padding: 0 7px; font-size: 9.5px; }
+footer { margin-top: 8px; border-top:1px solid var(--line); padding-top: 5px; color: var(--muted); font-size: 8.8px; }
+.noprint { margin: 8px 0; }
+@media print { .noprint { display:none; } }
+@media (max-width: 700px) { .tiles { grid-template-columns: repeat(2, 1fr); } .grid { grid-template-columns: 1fr; } }
+</style></head><body><div class="page">
+<div class="noprint"><button onclick="window.print()">Print / Save as PDF</button></div>
+<header><div><h1>Flood situation report</h1><div>Area: <b>Upper Trishuli: Syabrubesi to Rasuwagadhi</b> · Flood date: <b>2026-08-26</b></div></div>
+<div class="meta">Made: 2026-10-08 09:40 UTC<br>Copernicus Data Space Ecosystem (Sentinel Hub API)</div></header>
+<div class="tiles"><div class="tile"><b>1.73 km²</b><span>Flooded / debris</span></div><div class="tile"><b>358 <small>of 3,396</small></b><span>Buildings hit</span></div><div class="tile"><b>14.2 km</b><span>Road under flood</span></div><div class="tile"><b>14 <small>of 16</small></b><span>Bridges hit</span></div><div class="tile"><b>16</b><span>Settlements cut off</span></div><div class="tile"><b>0</b><span>Long detour</span></div></div>
+<div class="grid"><div><img class="map" src="sitrep_map.png" alt="map"><div class="note">Map: orange = debris/mud, blue = new water, red line = cut road, red dot = cut-off settlement</div></div>
+<div><h2>Summary</h2><p>The flood on 2026-08-26 affected the Upper Trishuli valley from Syabrubesi to Rasuwagadhi, covering about 1.73 km² of the 191.5 km² study area, with high‑confidence water on 0.47 km² and new open water on 0.15 km² while debris spread over 1.58 km². Of the 3,396 mapped buildings, 358 (11%) were hit, and 14.2 km of the 112.7 km road network and 14 of 16 bridges were damaged, cutting off 16 settlements. The most urgent cut‑off villages are Resuo (priority 88), Rasuwa Gadhi (priority 78), Aamachhodingmo (priority 69), Bahun Danda (priority 62), Lingling (priority 62), Dalphedi (priority 58), (unnamed) (priority 58), and Pajung (priority 57). The satellite maps saw the entire valley floor (100%) but cannot show small houses, footbridges, steep‑slope details, or any damage beyond the valley floor (10 m pixels miss small houses and footbridges; steep slopes are partly hidden from radar; only the valley floor is checked).</p>
+<p class="note"><span class="badge">✓ Every number on this page was computed by code from the satellite maps.</span><br>Groq · openai/gpt-oss-120b · 32 values inserted by code, 0 digits written by the AI</p></div></div>
+<h2>Cut-off settlements (most urgent first)</h2><table><tr><th>Settlement</th><th>Priority</th><th>Buildings nearby</th><th>What broke the road</th><th>Road km to help (before)</th></tr><tr><td>Resuo</td><td><b>88</b></td><td>87</td><td>road  (48 m); road  (116 m)</td><td>25</td></tr><tr><td>Rasuwa Gadhi</td><td><b>78</b></td><td>107</td><td>bridge  (103 m); road  (116 m)</td><td>25.2</td></tr><tr><td>Aamachhodingmo</td><td><b>69</b></td><td>366</td><td>road Pasang Lhamu Highway (16 m); road Pasang Lhamu Highway (222 m)</td><td>27.9</td></tr><tr><td>Bahun Danda</td><td><b>62</b></td><td>152</td><td>road Pasang Lhamu Highway (16 m); road Pasang Lhamu Highway (222 m)</td><td>24.4</td></tr><tr><td>Lingling</td><td><b>62</b></td><td>135</td><td>road  (157 m); road  (250 m)</td><td>22.2</td></tr><tr><td>Dalphedi</td><td><b>58</b></td><td>89</td><td>bridge  (212 m); road  (168 m)</td><td>23.6</td></tr><tr><td>(unnamed)</td><td><b>58</b></td><td>23</td><td>bridge  (2,757 m); bridge Pasang Lhamu Highway (706 m)</td><td>18.6</td></tr><tr><td>Pajung</td><td><b>57</b></td><td>82</td><td>bridge  (3,199 m); bridge Pasang Lhamu Highway (706 m)</td><td>21.6</td></tr><tr><td>Surka</td><td><b>56</b></td><td>70</td><td>bridge  (2,757 m); bridge Pasang Lhamu Highway (706 m)</td><td>23.3</td></tr></table>
+<p class="note"><b>Images used:</b> Radar (Sentinel-1): T85 asce. 2026-08-16, 2026-08-04, 2026-07-23 → 2026-08-28, 2026-09-09; T121 desc. 2026-08-19, 2026-08-07, 2026-07-26 → 2026-08-31, 2026-09-12 · Photo (Sentinel-2): 2026-08-12 → 2026-08-27 · OSM: 2026-07-27</p>
+<p class="note">Limits: 10 m pixels miss small houses and footbridges; radar can&#x27;t see some steep slopes; OpenStreetMap may miss buildings and roads; &#x27;hit&#x27; means touched by the flood, not destroyed. Educational prototype - not an operational tool.</p>
+<footer>Contains modified Copernicus Sentinel data 2026.<br>Produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and © Airbus Defence and Space GmbH 2014–2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.<br>© OpenStreetMap contributors.<br>Flood Damage from Space · made by Suraj Mishra</footer>
+</div></body></html>

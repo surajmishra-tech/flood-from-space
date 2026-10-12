@@ -1,0 +1,50 @@
+{
+ "AOI01": {
+  "ems_in_valley_pct": 69.1,
+  "recall_inside_valley": 0.534,
+  "ems_outside_valley_reason": {
+   "too_high_above_river_pct": 16.1,
+   "too_steep_pct": 14.8
+  },
+  "tp": 4097,
+  "fp": 7,
+  "fn": 7011,
+  "res": 10.0
+ },
+ "AOI02": {
+  "ems_in_valley_pct": 68.9,
+  "recall_inside_valley": 0.48,
+  "ems_outside_valley_reason": {
+   "too_high_above_river_pct": 17.5,
+   "too_steep_pct": 13.6
+  },
+  "tp": 4277,
+  "fp": 15,
+  "fn": 8659,
+  "res": 10.0
+ },
+ "AOI03": {
+  "ems_in_valley_pct": 96.7,
+  "recall_inside_valley": 0.705,
+  "ems_outside_valley_reason": {
+   "too_high_above_river_pct": 0.6,
+   "too_steep_pct": 2.7
+  },
+  "tp": 47829,
+  "fp": 3036,
+  "fn": 22310,
+  "res": 10.0
+ },
+ "AOI05": {
+  "ems_in_valley_pct": 99.0,
+  "recall_inside_valley": 0.421,
+  "ems_outside_valley_reason": {
+   "too_high_above_river_pct": 0.1,
+   "too_steep_pct": 0.9
+  },
+  "tp": 26652,
+  "fp": 366,
+  "fn": 37282,
+  "res": 10.0
+ }
+}

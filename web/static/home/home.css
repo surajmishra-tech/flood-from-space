@@ -1,0 +1,232 @@
+:root {
+  --bg: #010409;
+  --ink: #eef7ff;
+  --dim: rgba(222, 238, 252, .66);
+  --faint: rgba(222, 238, 252, .40);
+  --amber: #ffb45e;
+  --teal: #6ee8f4;
+  --display: "Jost", "Futura", "Century Gothic", "Trebuchet MS", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --bar: 0px;        /* cinema bar height, set by home.js */
+  --kick-y: 14vh;    /* layout lines, set by home.js to match the title drawn in WebGL */
+  --tag-y: 58vh;
+  --go-y: 80vh;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); overflow: hidden; }
+body { font-family: var(--display); -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+#gl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+/* ---------- heads-up display ---------- */
+#hud {
+  position: fixed; inset: 0; pointer-events: none;
+  font: 500 11px/1.5 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--dim);
+  opacity: 0; transition: opacity .9s ease;
+}
+#hud.on { opacity: 1; }
+.hud-tl, .hud-tr, .hud-bl { position: absolute; padding: 0 24px; transition: opacity .8s ease, top .9s ease, bottom .9s ease; }
+.hud-tl { left: 0; top: calc(var(--bar) / 2 - 8px); }
+.hud-tr { right: 0; top: calc(var(--bar) / 2 - 8px); text-align: right; }
+.hud-bl { left: 0; bottom: calc(var(--bar) / 2 - 8px); color: var(--faint); font-variant-numeric: tabular-nums; }
+#hud.ended .hud-bl { opacity: 0; }
+#hud.ended .hud-tl, #hud.ended .hud-tr { top: 18px; }
+.dot {
+  display: inline-block; width: 6px; height: 6px; margin: 0 10px 1px 0; border-radius: 50%;
+  background: var(--amber); box-shadow: 0 0 10px var(--amber); animation: blink 1.8s ease-in-out infinite;
+}
+@keyframes blink { 50% { opacity: .25; } }
+
+.target {
+  position: absolute; left: 0; top: 0; opacity: 0; transition: opacity .7s ease;
+  transform: translate3d(var(--tx, -999px), var(--ty, -999px), 0);
+}
+.target.on { opacity: 1; }
+.target i {
+  position: absolute; left: 0; top: 0; width: 78px; height: 1px; transform-origin: 0 0; transform: rotate(-32deg);
+  background: linear-gradient(90deg, rgba(255, 180, 94, .95), rgba(255, 180, 94, 0));
+}
+.target span {
+  position: absolute; left: 70px; top: -72px; white-space: nowrap; color: var(--ink); padding: 7px 11px 7px 10px;
+  background: rgba(2, 8, 14, .7); border-left: 2px solid var(--amber);
+}
+.target b { display: block; color: var(--amber); font-weight: 500; }
+
+/* ---------- title block ---------- */
+#ui { position: fixed; inset: 0; pointer-events: none; }
+#title {  /* drawn in WebGL (so the water can bend and reflect it); this copy is for screen readers and the fallback */
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0;
+}
+.kicker, .tagline, .go-caption {
+  position: absolute; left: 0; right: 0; margin: 0; padding: 0 16px; text-align: center;
+  opacity: 0; transform: translateY(10px); transition: opacity 1.1s ease, transform 1.1s ease;
+}
+.kicker {
+  top: var(--kick-y); font: 500 12px/1 var(--mono); letter-spacing: .44em; text-transform: uppercase; color: var(--teal);
+  text-shadow: 0 0 18px rgba(110, 232, 244, .45);
+}
+.tagline {
+  top: var(--tag-y); font: 400 clamp(13px, 1.32vw, 19px)/1.45 var(--display); letter-spacing: .09em; color: var(--dim);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .8);
+}
+.tagline i { font-style: normal; color: var(--amber); padding: 0 .55em; }
+.go-caption {
+  top: calc(var(--go-y) + 74px); font: 500 11px/1 var(--mono); letter-spacing: .3em; text-transform: uppercase; color: var(--faint);
+}
+.show { opacity: 1 !important; transform: none !important; }
+
+/* GO: a glass buoy floating on the flood water */
+#go {
+  position: absolute; left: 50%; top: var(--go-y); width: 116px; height: 116px; margin: -58px 0 0 -58px;
+  display: grid; place-items: center; border-radius: 50%; pointer-events: auto; text-decoration: none; color: #f2fdff;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(190, 250, 255, .42), rgba(190, 250, 255, 0) 46%),
+    radial-gradient(circle at 50% 60%, rgba(18, 120, 140, .55), rgba(4, 30, 42, .72) 70%);
+  border: 1px solid rgba(170, 244, 255, .6);
+  box-shadow: 0 0 46px rgba(80, 220, 240, .42), 0 0 120px rgba(80, 220, 240, .16), inset 0 0 26px rgba(160, 246, 255, .3);
+  opacity: .001; transform: translateY(16px) scale(.9); pointer-events: none;  /* painted early (not 0) so its glow is ready when it appears */
+  transition: opacity 1s ease, transform 1s cubic-bezier(.2, .9, .2, 1.2), box-shadow .3s ease, border-color .3s ease;
+  animation: bob 4.6s ease-in-out infinite paused;
+  will-change: transform, opacity, translate;
+}
+#go.show { animation-play-state: running; pointer-events: auto; }
+#go b { font: 600 25px/1 var(--display); letter-spacing: .32em; margin-right: -.32em; text-shadow: 0 0 16px rgba(160, 246, 255, .9); }
+#go:hover, #go:focus-visible {
+  border-color: #fff; outline: none;
+  box-shadow: 0 0 60px rgba(110, 232, 244, .7), 0 0 160px rgba(110, 232, 244, .3), inset 0 0 30px rgba(200, 250, 255, .45);
+}
+#go:active { transform: scale(.95) !important; }
+#go .ring {  /* ripples on the water around the buoy (squashed for perspective) */
+  position: absolute; left: 50%; top: 86%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%;
+  border: 1.5px solid rgba(150, 240, 255, .5); transform: scale(.6, .16); opacity: 0;
+  animation: ripple 3.2s ease-out infinite; pointer-events: none;
+}
+#go .ring.r2 { animation-delay: 1.6s; }
+#go .count { position: absolute; inset: -7px; width: calc(100% + 14px); height: calc(100% + 14px); transform: rotate(-90deg); pointer-events: none; }
+#go .count circle {
+  fill: none; stroke: var(--teal); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 352; stroke-dashoffset: 352;
+  opacity: .95;
+}
+@keyframes ripple { 0% { transform: scale(.6, .16); opacity: .8; } 100% { transform: scale(2.6, .62); opacity: 0; } }
+@keyframes bob { 50% { translate: 0 -6px; } }  /* translate (not margin) so the glow is not re-painted every frame */
+
+/* ---------- credits, controls, loader ---------- */
+#credits {
+  position: fixed; left: 0; right: 0; bottom: 10px; padding: 0 16px; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  font: 400 10px/1.45 var(--mono); letter-spacing: .04em; color: var(--faint); text-align: center;
+  opacity: 0; transition: opacity 1.2s ease; pointer-events: none;
+}
+#credits b { color: var(--ink); font-weight: 500; }
+#credits span:first-child { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; }
+#credits.show { opacity: 1; }
+
+#controls { position: fixed; right: 18px; bottom: calc(var(--bar) / 2 - 15px); display: flex; gap: 8px; z-index: 5; transition: bottom .9s ease; }
+#controls.ended { bottom: 18px; }
+#controls button {
+  font: 500 10px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--dim); cursor: pointer;
+  padding: 9px 12px; border-radius: 999px; border: 1px solid rgba(222, 238, 252, .22); background: rgba(4, 12, 20, .55);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: color .2s, border-color .2s;
+}
+#controls button:hover, #controls button:focus-visible { color: #fff; border-color: rgba(222, 238, 252, .6); outline: none; }
+#controls button[aria-pressed="true"] { color: var(--teal); border-color: rgba(110, 232, 244, .6); }
+#skip.gone { display: none; }
+
+/* ---------- loading screen: a small radar globe with a satellite, and a ring that fills up ----------
+   Everything here moves with transform/opacity only, so it keeps moving even while the 3D scene is being prepared. */
+#loader {
+  position: fixed; inset: 0; display: grid; place-content: center; justify-items: center; gap: 0; z-index: 10;
+  background:
+    radial-gradient(1px 1px at 18% 24%, rgba(255, 255, 255, .55), transparent 60%),
+    radial-gradient(1px 1px at 72% 18%, rgba(255, 255, 255, .45), transparent 60%),
+    radial-gradient(1.5px 1.5px at 84% 64%, rgba(200, 220, 255, .5), transparent 60%),
+    radial-gradient(1px 1px at 30% 78%, rgba(255, 255, 255, .35), transparent 60%),
+    radial-gradient(1px 1px at 58% 86%, rgba(255, 230, 200, .4), transparent 60%),
+    radial-gradient(1px 1px at 9% 58%, rgba(255, 255, 255, .3), transparent 60%),
+    radial-gradient(ellipse at 50% 46%, #06111c 0%, var(--bg) 58%);
+  transition: opacity .8s ease, transform 1.1s ease;
+  animation: l-in .6s .1s ease both;
+}
+@keyframes l-in { from { opacity: 0; } }
+#loader.done { opacity: 0; transform: scale(1.06); pointer-events: none; }
+.orb { position: relative; width: 176px; height: 176px; margin-bottom: 30px; }
+.orb svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
+.orb .track { fill: none; stroke: rgba(222, 238, 252, .09); stroke-width: 1.5; }
+.orb .prog {
+  fill: none; stroke: var(--teal); stroke-width: 2.5; stroke-linecap: round;
+  stroke-dasharray: 553; stroke-dashoffset: 553; transition: stroke-dashoffset .5s ease;
+}
+.orb .busy { opacity: 0; transition: opacity .4s ease; will-change: transform; animation: l-spin 1.4s linear infinite; }
+.orb .busy circle { fill: none; stroke: rgba(225, 252, 255, .95); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 46 507; }
+#loader.preparing .busy { opacity: 1; }
+.orbit { position: absolute; inset: -16px; border-radius: 50%; border: 1px dashed rgba(222, 238, 252, .13); will-change: transform; animation: l-spin 7s linear infinite; }
+.orbit i {
+  position: absolute; left: 50%; top: -4px; width: 7px; height: 7px; margin-left: -3.5px; border-radius: 2px; background: #f4fbff;
+  box-shadow: 0 0 10px #bff6ff, 0 0 2px #fff; transform: rotate(45deg);
+}
+.globe {
+  position: absolute; inset: 30px; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 64% 36%, #0d2234 0%, #061420 45%, #020810 75%);
+  box-shadow: inset 9px -5px 16px -7px rgba(170, 236, 255, .7), 0 0 34px rgba(110, 232, 244, .13);
+}
+.sweep {
+  position: absolute; inset: 0; border-radius: 50%; will-change: transform; animation: l-spin 2.6s linear infinite;
+  background: conic-gradient(from 0deg, rgba(255, 180, 94, 0) 0deg, rgba(255, 180, 94, 0) 300deg, rgba(255, 180, 94, .38) 358deg, rgba(255, 210, 150, .85) 360deg);
+}
+.ping { position: absolute; left: 61%; top: 39%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+.ping::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 1.5px solid var(--amber);
+  will-change: transform, opacity; animation: l-ping 1.8s ease-out infinite;
+}
+@keyframes l-spin { to { transform: rotate(360deg); } }
+.orb .busy { animation-name: l-spin-svg; }
+@keyframes l-spin-svg { from { transform: rotate(-90deg); } to { transform: rotate(270deg); } }
+@keyframes l-ping { from { transform: scale(1); opacity: .9; } to { transform: scale(5.5); opacity: 0; } }
+.l-title {
+  margin: 0 0 12px; padding-left: .5em; font: 300 15px/1 var(--display); letter-spacing: .5em; text-transform: uppercase; color: var(--ink);
+}
+.l-step {
+  margin: 0; display: flex; gap: 12px; align-items: baseline;
+  font: 500 10.5px/1 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: var(--dim);
+}
+.l-step b { color: var(--teal); font-weight: 500; min-width: 4ch; text-align: right; font-variant-numeric: tabular-nums; }
+.l-step span { animation: l-breathe 2.4s ease-in-out infinite; }
+@keyframes l-breathe { 50% { opacity: .55; } }
+
+/* ---------- phones ---------- */
+@media (max-width: 700px) {
+  #hud { font-size: 9px; letter-spacing: .12em; }
+  .hud-tl, .hud-tr, .hud-bl { padding: 0 14px; }
+  .hud-tr { display: none; }
+  .kicker { font-size: 10px; letter-spacing: .3em; }
+  .tagline i { display: block; height: 0; overflow: hidden; }
+  #go { width: 96px; height: 96px; margin: -48px 0 0 -48px; }
+  #go b { font-size: 21px; }
+  .go-caption { top: calc(var(--go-y) + 62px); }
+  #credits { font-size: 8.5px; bottom: 6px; }
+  #credits span:first-child { font-size: 10px; }
+  #controls, #controls.ended { right: 10px; top: 10px; bottom: auto; }
+  .hud-tl { display: none; }
+  .target span { left: 56px; top: -58px; }
+  .orb { width: 150px; height: 150px; }
+  .l-title { font-size: 11px; letter-spacing: .36em; }
+  .l-step { letter-spacing: .14em; font-size: 9.5px; }
+}
+
+/* ---------- fallback: still picture when WebGL cannot run ---------- */
+.nogl body { background: #01060b url("/static/home/poster.jpg") center 70% / cover no-repeat; }
+.nogl #gl, .nogl #hud, .nogl #loader, .nogl #controls { display: none; }
+.nogl #title {
+  position: absolute; left: 0; right: 0; top: 24vh; width: auto; height: auto; clip-path: none; overflow: visible; text-align: center;
+  font: 600 clamp(38px, 7.6vw, 118px)/.98 var(--display); letter-spacing: .1em; text-transform: uppercase; white-space: normal;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, .7);
+}
+.nogl #title .l2 { display: block; font-weight: 300; font-size: .62em; letter-spacing: .5em; margin-top: .25em; }
+.nogl .kicker, .nogl .tagline, .nogl .go-caption, .nogl #go, .nogl #credits { opacity: 1; transform: none; }
+.nogl #go { animation-play-state: running; }
+.nogl .kicker { top: 15vh; }
+.nogl .tagline { top: 52vh; }
+.nogl #go { top: 72vh; }
+.nogl .go-caption { top: calc(72vh + 74px); }
+
+/* still picture for old computers is made with ?clean=1 */
+.clean #ui, .clean #credits, .clean #controls, .clean #hud { display: none; }

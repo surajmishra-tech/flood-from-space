@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070d18">
+<title>Flood Damage from Space</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+<link rel="stylesheet" href="/static/style.css?v=20261012b">
+</head>
+<body class="mode-team">
+
+<!-- ================= top bar ================= -->
+<header id="topbar">
+  <a class="brand" href="/" title="Home: watch the intro again">
+    <span class="logo" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+        <g transform="rotate(-45 15 15)">
+          <rect x="11.5" y="11.5" width="7" height="7" rx="1.5"/>
+          <rect x="2" y="12" width="7" height="6" rx="1"/>
+          <rect x="21" y="12" width="7" height="6" rx="1"/>
+          <path d="M9 15h2.5M18.5 15H21"/>
+        </g>
+        <path d="M19.5 26.5a7 7 0 0 0 7-7" opacity=".85"/>
+        <path d="M18.5 30.5a11 11 0 0 0 12-12" opacity=".5"/>
+      </svg>
+    </span>
+    <div>
+      <h1>Flood Damage from Space</h1>
+      <p>Where did the flood hit · What was damaged · Who is cut off</p>
+    </div>
+  </a>
+  <div class="runchip" title="The results shown on the map">
+    <span class="pulse"></span>
+    <span id="runChipName">No area open</span>
+    <span id="runChipDate" class="mono"></span>
+  </div>
+  <ul class="sources" aria-label="Data used">
+    <li>Sentinel-1 radar</li><li>Sentinel-2 photos</li><li>Copernicus DEM</li><li>OSM before the flood</li>
+  </ul>
+  <nav class="modes">
+    <button id="modeHelp" type="button"><span>🆘 I need help</span><small>मलाई मद्दत चाहियो</small></button>
+    <button id="modeTeam" type="button"><span>🚁 Rescue team <span id="newCount" class="badge" hidden></span></span><small>उद्धार टोली</small></button>
+  </nav>
+</header>
+
+<!-- ================= the answers, as big numbers ================= -->
+<section id="kpis" aria-label="Key numbers">
+  <div class="kpi-head"><span>Answers</span><small id="areaName">open or run an area</small></div>
+  <div id="tiles" class="kpi-row">
+    <div class="kpi k-flood"><span>Flooded / debris</span><b>–</b></div>
+    <div class="kpi k-bld"><span>Buildings hit</span><b>–</b></div>
+    <div class="kpi k-road"><span>Road under flood</span><b>–</b></div>
+    <div class="kpi k-bridge"><span>Bridges reached</span><b>–</b></div>
+    <div class="kpi k-cut"><span>Settlements cut off</span><b>–</b></div>
+    <div class="kpi k-detour"><span>Long detour</span><b>–</b></div>
+  </div>
+</section>
+
+<!-- ================= left panel ================= -->
+<aside id="left" class="panel">
+
+  <!-- "I need help" side -->
+  <div id="helpView" class="help-only">
+    <section class="card">
+      <h2>Emergency numbers <small>आपतकालीन नम्बर</small></h2>
+      <p class="hint top">Tap to call. If you are in danger, call first.</p>
+      <div class="phones">
+        <div>
+          <b>Nepal · नेपाल</b>
+          <a class="call" href="tel:100">Police · प्रहरी <b>100</b></a>
+          <a class="call" href="tel:102">Ambulance · एम्बुलेन्स <b>102</b></a>
+          <a class="call" href="tel:101">Fire · दमकल <b>101</b></a>
+        </div>
+        <div>
+          <b>India · भारत</b>
+          <a class="call" href="tel:112">All emergencies <b>112</b></a>
+          <a class="call" href="tel:108">Ambulance <b>108</b></a>
+          <a class="call" href="tel:1078">Disaster helpline <b>1078</b></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Am I in danger? <small>के म खतरामा छु?</small></h2>
+      <button id="gpsBtn" class="primary" type="button">📍 Use my current location<small>मेरो हालको स्थान प्रयोग गर्नुहोस्</small></button>
+      <label>Or type your village or town · <span lang="ne">वा आफ्नो गाउँ / सहरको नाम</span>
+        <span class="row search"><input id="placeQ" placeholder="e.g. Timure, रसुवागढी, or 28.166, 85.322"><button id="placeBtn" type="button">Search</button></span>
+      </label>
+      <ul id="placeList" class="list places"></ul>
+      <button id="pickBtn" type="button" class="wide">👆 Or tap your place on the map<small>वा नक्सामा आफ्नो ठाउँ छुनुहोस्</small></button>
+      <p id="locMsg" class="msg"></p>
+    </section>
+
+    <section id="safetyCard" class="card" hidden>
+      <div class="row lang-row"><select id="helpLang" aria-label="Language"><option value="en">English</option><option value="ne">नेपाली</option></select></div>
+      <div id="safetyBox"></div>
+    </section>
+
+    <section id="sendCard" class="card" hidden>
+      <h2>Send my location to the rescue team <small>मेरो स्थान उद्धार टोलीलाई पठाउनुहोस्</small></h2>
+      <div class="row two">
+        <label>Your name · नाम <input id="hName" maxlength="60" autocomplete="name"></label>
+        <label>Phone · फोन <input id="hPhone" maxlength="20" inputmode="tel" autocomplete="tel"></label>
+      </div>
+      <label>How many people? · कति जना? <input id="hPeople" type="number" min="1" max="999" value="1"></label>
+      <label>What help do you need? · कस्तो मद्दत चाहिन्छ? <textarea id="hNote" rows="2" maxlength="300" placeholder="e.g. 2 elderly people, 1 injured, no food"></textarea></label>
+      <label class="check"><input id="hConsent" type="checkbox"> <span>I agree to share my location and these details with the rescue team.
+        <span lang="ne">म मेरो स्थान र यी विवरण उद्धार टोलीसँग बाँड्न सहमत छु।</span></span></label>
+      <button id="sendBtn" class="primary sos" type="button">🆘 Send help request · मद्दत माग्नुहोस्</button>
+      <div id="sendMsg" class="send-msg" hidden></div>
+      <p class="hint">📡 To stop fake requests, your phone's location is read again when you tap Send. Requests can only be sent from inside a mapped flood area, from the place itself.
+        <span lang="ne">नक्कली अनुरोध रोक्न, पठाउँदा फोनको स्थान फेरि पढिन्छ।</span></p>
+      <p class="hint">Demo: the request goes to the "Rescue team" screen of this app, not to a real government service. If you are in danger, call the numbers above.</p>
+    </section>
+
+    <section id="trackCard" class="card" hidden>
+      <h2>Your help request <small>तपाईंको मद्दत अनुरोध</small></h2>
+      <div id="sentBox" class="sent"></div>
+      <p class="hint">Keep this page open: it checks for news from the rescue team every few seconds.</p>
+      <p class="small track">Follow it on another phone · अर्को फोनमा हेर्नुहोस्:<br><a id="trackLink" target="_blank" rel="noopener"></a>
+        <button id="trackCopy" type="button" class="mini">Copy</button></p>
+    </section>
+  </div>
+
+  <!-- Rescue team side -->
+  <div id="teamView" class="team-only">
+    <section class="card">
+      <h2><span class="step">01</span> Area and flood date</h2>
+      <label>Saved results
+        <select id="runs"><option value="">— choose —</option></select>
+      </label>
+      <div class="row">
+        <button id="drawBtn" type="button">▭ Draw a box on the map</button>
+      </div>
+      <label>Box (west, south, east, north)
+        <input id="bbox" placeholder="85.30, 28.13, 85.40, 28.30">
+      </label>
+      <div class="row two">
+        <label>Flood date <input id="date" type="date" value="2026-08-26"></label>
+        <label>Name <input id="name" placeholder="optional"></label>
+      </div>
+      <button id="runBtn" class="primary" type="button">▶ Run analysis</button>
+      <div id="progress" hidden>
+        <div class="bar"><span></span></div>
+        <p class="msg"></p>
+      </div>
+      <p class="hint">Runs in 2–6 minutes for a valley-sized box. Results are saved, so opening them again is instant.</p>
+    </section>
+
+    <div id="results" hidden>
+      <section class="card">
+        <h2><span class="step">02</span> Who is cut off <span class="count" id="cutCount"></span> <small>most urgent first</small></h2>
+        <ol id="cutList" class="list"></ol>
+        <p class="hint">The number is a rescue priority out of 100, from size (buildings), damage, isolation and remoteness. It is computed by code, not by the AI. Hover it to see the parts.</p>
+      </section>
+      <section class="card">
+        <h2><span class="step">03</span> Long detour <span class="count" id="detourCount"></span></h2>
+        <ol id="detourList" class="list"></ol>
+      </section>
+      <section class="card">
+        <h2><span class="step">04</span> Bridges reached by the flood <span class="count" id="bridgeCount"></span></h2>
+        <ol id="bridgeList" class="list"></ol>
+      </section>
+    </div>
+  </div>
+
+  <footer class="attrib" id="attrib">
+    Contains modified Copernicus Sentinel data. Produced using Copernicus WorldDEM-30 © DLR e.V. 2010–2014 and
+    © Airbus Defence and Space GmbH 2014–2018 provided under COPERNICUS by the European Union and ESA; all rights reserved.
+    © OpenStreetMap contributors. Made by Suraj Mishra · Educational prototype, not an operational tool.
+  </footer>
+</aside>
+
+<!-- ================= map ================= -->
+<div id="mapwrap">
+  <main id="map"></main>
+  <!-- each row switches its layer on or off -->
+  <div id="legend" class="legend">
+    <b id="legendTitle">Map key <small>click to hide / show</small></b>
+    <button type="button" data-key="names"><i class="aa">Aa</i>names</button>
+    <button type="button" data-key="help"><i class="sos-mini">SOS</i>help request</button>
+    <button type="button" data-key="here"><i class="dot" style="background:#2563eb;outline:2px solid #bcd3ff"></i>you are here</button>
+    <button type="button" data-key="flood"><i style="background:#d66e18"></i>debris / mud</button>
+    <button type="button" data-key="flood"><i style="background:#1e6eff"></i>new water</button>
+    <button type="button" data-key="roads"><i class="line" style="background:#d7191c"></i>cut road</button>
+    <button type="button" data-key="buildings"><i style="background:#d7191c;box-shadow:inset 0 0 0 1px #7f0000"></i>building hit</button>
+    <button type="button" data-key="bridges"><i class="dot" style="background:#7f0000;box-shadow:0 0 0 1.5px #fff"></i>bridge (red = reached)</button>
+    <button type="button" data-key="hospitals"><i class="hosp">+</i>hospital / health post</button>
+    <button type="button" data-key="cut_off"><i class="dot" style="background:#d7191c"></i>cut off</button>
+    <button type="button" data-key="detour"><i class="dot" style="background:#f39c12"></i>detour</button>
+    <button type="button" data-key="ok"><i class="dot" style="background:#1a9641"></i>still connected</button>
+    <button type="button" data-key="no_road"><i class="dot" style="background:#999"></i>no road before</button>
+    <button type="button" data-key="aoi"><i class="box"></i>study area</button>
+  </div>
+  <a id="toEvidence" class="to-evidence team-only" href="#evidence">
+    <span>See the evidence</span><small>radar before &amp; after · accuracy · tests</small><i aria-hidden="true">▼</i>
+  </a>
+</div>
+
+<!-- ================= right panel (rescue team) ================= -->
+<aside id="right" class="panel team-only">
+  <nav class="tabs" role="tablist">
+    <button class="tab on" type="button" role="tab" data-tab="tabCopilot">Copilot</button>
+    <button class="tab" type="button" role="tab" data-tab="tabLayers" id="layersTab">Map layers</button>
+    <button class="tab" type="button" role="tab" data-tab="tabRequests" id="reqTab">Help requests <span class="count" id="reqCount">0</span></button>
+  </nav>
+
+  <div id="tabLayers" class="tabpane" hidden>
+    <section class="card" id="layersCard">
+      <h2>Map layers <small>switch them on and off</small></h2>
+    </section>
+  </div>
+
+  <div id="tabRequests" class="tabpane" hidden>
+    <section class="card" id="reqCard">
+      <h2>🆘 Help requests</h2>
+      <div id="pinBox" hidden>
+        <p class="small">🔒 Help requests contain people's names, phone numbers and locations. Type the rescue team PIN to see them.</p>
+        <span class="row search"><input id="pinInput" type="password" inputmode="numeric" autocomplete="off" placeholder="Rescue team PIN" aria-label="Rescue team PIN"><button id="pinBtn" type="button">Unlock</button></span>
+        <p id="pinMsg" class="msg"></p>
+      </div>
+      <div id="reqTools" class="row req-tools" hidden>
+        <button id="recheckBtn" type="button">↻ Re-check danger levels</button>
+        <button id="lockBtn" type="button" hidden>🔒 Lock</button>
+      </div>
+      <p id="recheckMsg" class="msg" hidden></p>
+      <ol id="reqList" class="list reqs"><li class="sub">No help requests yet.</li></ol>
+      <p class="hint">Most urgent first. The danger level comes from our flood maps, not from the sender, and is checked again whenever a new analysis covers the place.</p>
+    </section>
+  </div>
+
+  <div id="tabCopilot" class="tabpane">
+  <p class="hint no-run">Open a saved result or run an area first.</p>
+  <section class="card needs-run">
+    <h2>AI situation-report copilot <small>English · नेपाली</small></h2>
+    <div class="row two">
+      <a id="sitrepEn" class="button" target="_blank">📄 One-page report</a>
+      <a id="sitrepNe" class="button" target="_blank">📄 नेपाली रिपोर्ट</a>
+    </div>
+    <textarea id="question" rows="2" placeholder="e.g. Which villages need help first, and why?"></textarea>
+    <div class="row two">
+      <select id="lang"><option value="en">English</option><option value="ne">नेपाली</option></select>
+      <button id="askBtn" type="button" class="accent">Ask the copilot</button>
+    </div>
+    <div id="answer" class="answer" hidden></div>
+    <p class="hint">Every number in an answer is put in by our code from the maps. The language model is not allowed to write numbers.</p>
+  </section>
+
+  <section class="card needs-run">
+    <h2>Bonus · Flood path</h2>
+    <button id="pathBtn" type="button" class="wide">〰 Click a point upstream to trace the flood path</button>
+    <ol id="pathList" class="list"></ol>
+  </section>
+
+  <section class="card needs-run">
+    <h2>Images used</h2>
+    <div id="images" class="small"></div>
+    <div id="warnings" class="warnings"></div>
+  </section>
+
+  <details class="limits">
+    <summary>What this system cannot do (honest limits)</summary>
+    <ul>
+      <li><b>No early warning.</b> Sentinel-1 passes a valley only every few days, so it maps damage after the event - it cannot warn minutes before a glacier collapse.</li>
+      <li><b>10 m pixels.</b> Small houses, narrow roads and footbridges can be missed. Official EMS maps use 0.3–0.7 m images.</li>
+      <li><b>Steep gorges.</b> Radar can't see some steep slopes (layover / shadow), and the 30 m height model is rough in narrow valleys, so we under-map the edges of the debris.</li>
+      <li><b>Only the valley floor is checked</b> (low above the river). Landslides high on slopes are not mapped.</li>
+      <li><b>"Hit" is not "destroyed".</b> We say a building or road touches the flood area; we don't grade the damage.</li>
+      <li><b>OpenStreetMap gaps.</b> Missing buildings, roads or villages mean missing answers. Footpaths, trails and footbridges are not in the road network.</li>
+      <li><b>Roads outside the box</b> are assumed to be open.</li>
+      <li><b>Help requests are a demo.</b> They are saved on this computer and shown on this screen only; nothing reaches a real government service. They are protected by one shared PIN, not by real user accounts. Requests are accepted only from phones inside a mapped flood area: this stops casual fakes, but GPS can be faked, and a real person outside our maps is shown the emergency numbers instead.</li>
+      <li><b>Educational prototype</b> - not an operational tool.</li>
+    </ul>
+  </details>
+  </div>
+</aside>
+
+<!-- ================= evidence: scroll down from the dashboard ================= -->
+<section id="evidence" class="team-only" aria-labelledby="evTitle">
+  <header class="ev-hero reveal">
+    <p class="ev-kicker">The evidence</p>
+    <h2 id="evTitle">How we know the map is right</h2>
+    <p class="ev-lead">Every answer on the dashboard comes from free satellite data and the map as it was <b>before</b> the flood.
+      Here is the proof, step by step, for the Trishuli flood of <b id="evDate">26 August 2026</b>.</p>
+    <nav class="ev-nav" aria-label="Evidence sections">
+      <a href="#ev-radar">Radar</a><a href="#ev-photos">Photos</a><a href="#ev-how">How it works</a><a href="#ev-check">Official check</a>
+      <a href="#ev-control">No-flood test</a><a href="#ev-floods">Other floods</a><a href="#ev-ai">AI</a><a href="#ev-priority">Priority</a><a href="#ev-limits">Limits</a>
+    </nav>
+  </header>
+
+  <!-- 1. radar -->
+  <article class="ev-block reveal" id="ev-radar">
+    <div class="ev-head"><span class="ev-num">01</span><div>
+      <h3>Radar sees the flood through the clouds</h3>
+      <p>Sentinel-1 sends its own radar waves, so it works through cloud, day and night. We compare the same valley
+        <b>before</b> and <b>after</b> the flood. Drag the line to compare. This is the <b id="evZoomKm">3.8 km</b> around
+        <b id="evZoomNear">Rasuwa Gadhi</b>, where the radar changed most.</p>
+    </div></div>
+    <div class="ev-radar">
+      <figure class="compare" id="cmp" style="--pos: 50%">
+        <img src="/static/evidence/radar_before.jpg" alt="Radar image before the flood" width="760" height="760">
+        <div class="after"><img src="/static/evidence/radar_after.jpg" alt="Radar image after the flood" width="760" height="760"></div>
+        <span class="tag tag-l">Before</span><span class="tag tag-r">After</span>
+        <span class="handle" aria-hidden="true"></span>
+        <input type="range" min="0" max="100" value="50" aria-label="Compare the radar before and after the flood">
+        <figcaption>Sentinel-1 radar, before ↔ after</figcaption>
+      </figure>
+      <figure>
+        <img src="/static/evidence/radar_change.jpg" alt="Radar change on the valley floor" width="760" height="760" loading="lazy">
+        <figcaption>What changed, on the valley floor only: <b class="c-cyan">blue</b> = smoother after (mud, water) ·
+          <b class="c-red">red</b> = rougher after (debris)</figcaption>
+      </figure>
+      <figure>
+        <img src="/static/evidence/flood_zoom.jpg" alt="Our flood map of the same place" width="760" height="760" loading="lazy">
+        <figcaption>Our flood map: <b class="c-orange">orange</b> = mud and debris · <b class="c-blue">blue</b> = new water</figcaption>
+      </figure>
+    </div>
+    <p class="ev-meta" id="evRadarDates"></p>
+  </article>
+
+  <!-- 2. photos -->
+  <article class="ev-block reveal" id="ev-photos">
+    <div class="ev-head"><span class="ev-num">02</span><div>
+      <h3>Why radar: the photo after the flood is full of clouds</h3>
+      <p>Sentinel-2 takes normal colour photos, but monsoon clouds hide the valley. Only <b id="evClear">67.9%</b> of the valley
+        was cloud-free after the flood, so photos only <b>confirm</b> the radar where the sky is clear.</p>
+    </div></div>
+    <div class="ev-trio">
+      <figure><img src="/static/evidence/photo_before.jpg" alt="Photo before the flood" width="520" height="965" loading="lazy">
+        <figcaption>Photo before · <span id="evOptBefore"></span></figcaption></figure>
+      <figure><img src="/static/evidence/photo_after.jpg" alt="Photo after the flood, mostly clouds" width="520" height="965" loading="lazy">
+        <figcaption>Photo after · <span id="evOptAfter"></span></figcaption></figure>
+      <figure class="hl"><img src="/static/evidence/result.jpg" alt="The answer: flood map, cut roads and cut-off villages" width="640" height="1188" loading="lazy">
+        <figcaption>The answer: flood, cut roads and <b class="c-red">cut-off villages</b> (rescue priority)</figcaption></figure>
+    </div>
+    <div class="ev-stats" id="evMainStats"></div>
+  </article>
+
+  <!-- 3. how it works -->
+  <article class="ev-block reveal" id="ev-how">
+    <div class="ev-head"><span class="ev-num">03</span><div>
+      <h3>How it works, from satellite to answer</h3>
+      <p>Draw a box, give the flood date, press Run. Everything below happens by itself in 2–6 minutes, for any area and any date.</p>
+    </div></div>
+    <ol class="ev-steps">
+      <li><b>Sentinel-1 radar</b><span>3 passes before and 2 after, from both directions; change detection finds new mud, debris and water.</span></li>
+      <li><b>Copernicus height model</b><span>Only the valley floor is checked (low above the river, not too steep), so mountain slopes don't give false alarms.</span></li>
+      <li><b>Sentinel-2 photos</b><span>Where the sky is clear, the photos confirm the radar (water and bare mud look different from forest).</span></li>
+      <li><b>Map from before the flood</b><span>OpenStreetMap as it was before the flood: buildings, roads, bridges, villages, hospitals.</span></li>
+      <li><b>Road network</b><span>Broken roads are removed; a village with no road left to a town or hospital is <b>cut off</b>, then ranked by rescue priority.</span></li>
+      <li><b>AI copilot</b><span>Writes the situation report in English or Nepali. It writes only blanks; our code fills in every number.</span></li>
+    </ol>
+  </article>
+
+  <!-- 4. official check -->
+  <article class="ev-block reveal" id="ev-check">
+    <div class="ev-head"><span class="ev-num">04</span><div>
+      <h3>Checked against the official EU emergency map</h3>
+      <p>Copernicus EMS mapped this flood by hand from very sharp images (0.3–0.7 m). We used them <b>only to check</b>
+        our result, never as an input.</p>
+    </div></div>
+    <div class="ev-big" id="evBig"></div>
+    <div class="ev-tablewrap"><table class="ev-table" id="evTable"></table></div>
+    <figure class="ev-fig"><img src="/static/evidence/ems_compare.jpg" alt="Our flood map compared with the official EMS map" width="2000" height="720" loading="lazy">
+      <figcaption>Green = both maps agree · orange = only ours · purple = only EMS · black dots = buildings EMS marked as destroyed.
+        Credit: European Union, Copernicus Emergency Management Service (EMSR927).</figcaption></figure>
+    <p class="ev-note"><b>Honest reading:</b> what we map is almost always real (high precision), but we miss part of the outer
+      edge of the debris (recall), because our pixels are 10 m against their 0.3–0.7 m.</p>
+  </article>
+
+  <!-- 5. no-flood test -->
+  <article class="ev-block reveal" id="ev-control">
+    <div class="ev-head"><span class="ev-num">05</span><div>
+      <h3>No flood, no alarm</h3>
+      <p>The same box on a dry-season date (<b id="evCtlDate">15 April 2026</b>), run with the same settings. A system that
+        "sees" floods everywhere would fail this test.</p>
+    </div></div>
+    <div class="ev-duo">
+      <figure class="hl"><img src="/static/evidence/result.jpg" alt="Real flood result" width="640" height="1188" loading="lazy">
+        <figcaption>Flood date · 26 Aug 2026</figcaption></figure>
+      <div class="ev-bars" id="evBars"></div>
+      <figure><img src="/static/evidence/control.jpg" alt="Dry season result: almost nothing found" width="640" height="1188" loading="lazy">
+        <figcaption>Dry season · <span id="evCtlDate2">15 Apr 2026</span></figcaption></figure>
+    </div>
+  </article>
+
+  <!-- 6. other floods -->
+  <article class="ev-block reveal" id="ev-floods">
+    <div class="ev-head"><span class="ev-num">06</span><div>
+      <h3>Not built for one valley: the same system on other floods</h3>
+      <p>No settings were changed between these runs. Each one is a saved result you can open.</p>
+    </div></div>
+    <div class="ev-cards" id="evFloods"></div>
+  </article>
+
+  <!-- 7. AI -->
+  <article class="ev-block reveal" id="ev-ai">
+    <div class="ev-head"><span class="ev-num">07</span><div>
+      <h3>An AI that cannot invent numbers</h3>
+      <p>In a disaster, a wrong number can send a rescue team to the wrong place. So the language model is only allowed to write
+        <b>blanks</b>; a checker rejects any digit it writes, and our code fills each blank from the maps.</p>
+    </div></div>
+    <div class="ev-ai" id="evAi"></div>
+  </article>
+
+  <!-- 8. priority -->
+  <article class="ev-block reveal" id="ev-priority">
+    <div class="ev-head"><span class="ev-num">08</span><div>
+      <h3>Who needs help first</h3>
+      <p>Every cut-off village gets a rescue priority out of 100, computed by code (not by the AI) from four parts:</p>
+    </div></div>
+    <div class="ev-weights"><span style="flex:40">Size 40%</span><span style="flex:30">Damage 30%</span><span style="flex:20">Isolation 20%</span><span style="flex:10">Far 10%</span></div>
+    <div class="ev-prio" id="evPrio"></div>
+  </article>
+
+  <!-- 9. help side + limits -->
+  <article class="ev-block reveal" id="ev-limits">
+    <div class="ev-head"><span class="ev-num">09</span><div>
+      <h3>For people in the flood, and what we cannot do</h3>
+    </div></div>
+    <div class="ev-two">
+      <div class="ev-card">
+        <h4>"I need help" side</h4>
+        <p>People inside a mapped flood area can check their danger level, call emergency numbers, and send their GPS location to
+          the rescue team's inbox (PIN-protected). Requests from outside the flood area, or far from the chosen place, are refused,
+          which stops casual fake requests.</p>
+        <a class="ev-link" href="/app?mode=help">Open the "I need help" side →</a>
+      </div>
+      <div class="ev-card">
+        <h4>Honest limits</h4>
+        <ul>
+          <li><b>No early warning:</b> satellites pass every few days, so we map damage after the event.</li>
+          <li><b>10 m pixels:</b> small houses, narrow roads and footbridges can be missed.</li>
+          <li><b>Steep gorges:</b> radar can't see some slopes, so we under-map debris edges.</li>
+          <li><b>"Hit" is not "destroyed":</b> we don't grade damage.</li>
+          <li><b>Map gaps:</b> missing buildings or roads in OpenStreetMap mean missing answers.</li>
+          <li>An <b>educational prototype</b>, not an operational tool.</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <footer class="ev-foot">
+    <p><b>Flood Damage from Space</b> · made by <b>Suraj Mishra</b> · Multimodal AI Hackathon 2026, Track B</p>
+    <p>Contains modified Copernicus Sentinel data 2026. Copernicus DEM © DLR e.V. / Airbus. © OpenStreetMap contributors (map as it was before the flood).
+      Validation: Copernicus EMS EMSR927, © European Union.</p>
+    <p><a class="ev-link" href="/report.pdf" target="_blank" rel="noopener">Read the 5-page report (PDF)</a> ·
+      <a class="ev-link" href="#topbar">Back to the map ↑</a></p>
+  </footer>
+</section>
+<a id="evBack" class="ev-back team-only" href="#topbar" aria-label="Back to the map">↑ Map</a>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="/static/app.js?v=20261012b"></script>
+<script src="/static/evidence.js?v=20261012b"></script>
+</body>
+</html>

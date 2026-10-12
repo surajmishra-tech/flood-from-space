@@ -1,0 +1,88 @@
+{
+  "run_id": "fb7507902568",
+  "name": "Upper Trishuli: Syabrubesi to Rasuwagadhi",
+  "bbox": [
+    85.3,
+    28.13,
+    85.4,
+    28.3
+  ],
+  "flood_date": "2026-08-26",
+  "time_utc": null,
+  "source": "cdse",
+  "res_m": 10.0,
+  "status": "done",
+  "started": "2026-10-03T11:12:42+00:00",
+  "version": "0.1",
+  "log": [
+    {
+      "t": 0.0,
+      "pct": 3,
+      "msg": "Loading height data (Copernicus DEM) and finding the rivers"
+    },
+    {
+      "t": 8.2,
+      "pct": 10,
+      "msg": "Searching Sentinel-1 radar images (Copernicus Data Space Ecosystem (Sentinel Hub API))"
+    },
+    {
+      "t": 10.8,
+      "pct": 14,
+      "msg": "Downloading 10 radar images (before + after, same tracks)"
+    },
+    {
+      "t": 40.4,
+      "pct": 40,
+      "msg": "Radar change computed"
+    },
+    {
+      "t": 41.8,
+      "pct": 42,
+      "msg": "Looking for cloud-free Sentinel-2 images"
+    },
+    {
+      "t": 55.0,
+      "pct": 48,
+      "msg": "Downloading Sentinel-2 images 12 Aug and 27 Aug"
+    },
+    {
+      "t": 78.6,
+      "pct": 55,
+      "msg": "Mapping flooded and debris-covered areas"
+    },
+    {
+      "t": 79.8,
+      "pct": 60,
+      "msg": "Loading OpenStreetMap as it was on 2026-07-27 (before the flood)"
+    },
+    {
+      "t": 80.0,
+      "pct": 66,
+      "msg": "Loading roads, villages and hospitals"
+    },
+    {
+      "t": 80.1,
+      "pct": 72,
+      "msg": "Checking which buildings, roads and bridges were hit"
+    },
+    {
+      "t": 80.9,
+      "pct": 80,
+      "msg": "Finding villages that lost their road connection"
+    },
+    {
+      "t": 81.3,
+      "pct": 92,
+      "msg": "Writing facts.json"
+    },
+    {
+      "t": 81.3,
+      "pct": 100,
+      "msg": "Done"
+    }
+  ],
+  "warnings": [],
+  "progress": 100,
+  "message": "Done",
+  "finished": "2026-10-03T11:14:03+00:00"
+}

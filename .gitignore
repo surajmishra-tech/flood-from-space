@@ -1,0 +1,31 @@
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Secrets - never push these
+.env
+
+# Downloaded data and results (big, and OSM extracts must stay ODbL - the system downloads them when it runs)
+cache/
+# Results stay on this computer, except the main case study, so a fresh copy shows a real map (licences: runs/README.md)
+runs/*
+!runs/README.md
+!runs/fb7507902568/
+
+# Help requests (people's names, phones and locations) - never push these
+helpdesk/
+
+# Copernicus EMS files - used only for checking, not part of the system
+validation/*
+!validation/README.md
+
+# Organisers' PDFs (reference only)
+official-docs/
+
+# Your private notes for the submission (Q&A practice, video script, Devpost text)
+submission/
+
+# My private planning notes
+TRACK_B_PLAN.md

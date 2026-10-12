@@ -1,0 +1,410 @@
+[
+ {
+  "aoi": "AOI01",
+  "place": "Syabrubesi",
+  "run": "fb7507902568",
+  "aoi_km2": 3.46,
+  "aoi_covered_by_our_box": 1.0,
+  "flood_extent": {
+   "ours_km2": 0.41,
+   "ems_km2": 1.111,
+   "iou": 0.369,
+   "precision": 0.998,
+   "recall": 0.369,
+   "f1": 0.539,
+   "precision_20m": 1.0,
+   "recall_20m": 0.578,
+   "f1_20m": 0.732
+  },
+  "flood_extent_incl_low": {
+   "ours_km2": 0.427,
+   "ems_km2": 1.111,
+   "iou": 0.375,
+   "precision": 0.982,
+   "recall": 0.377,
+   "f1": 0.545,
+   "precision_20m": 0.994,
+   "recall_20m": 0.581,
+   "f1_20m": 0.733
+  },
+  "buildings": {
+   "ems_affected": 433,
+   "ours_hit_osm": 142,
+   "found_within_20m_pct": 67.2,
+   "found_destroyed_pct": 87.9,
+   "ems_destroyed": 323,
+   "found_damaged_pct": 18.8,
+   "ems_damaged": 32,
+   "found_possibly_damaged_pct": 1.3,
+   "ems_possibly_damaged": 78
+  },
+  "roads": {
+   "ems_affected_km": 7.63,
+   "ems_total_km": 11.51,
+   "ours_cut_km": 4.48,
+   "ems_affected_found_within_20m_pct": 61.4
+  },
+  "bridges": {
+   "ems_affected": 5,
+   "ours_hit_osm": 4,
+   "ems_bridges_on_our_flood_pct": 100.0
+  },
+  "image_dates": {
+   "ours_radar": [
+    {
+     "track": 85,
+     "direction": "ascending",
+     "before": [
+      "2026-08-16",
+      "2026-08-04",
+      "2026-07-23"
+     ],
+     "after": [
+      "2026-08-28",
+      "2026-09-09"
+     ],
+     "valley_seen_pct": 99.4,
+     "shift_db": [
+      -0.17,
+      -0.42
+     ],
+     "noise_db": 0.91,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    },
+    {
+     "track": 121,
+     "direction": "descending",
+     "before": [
+      "2026-08-19",
+      "2026-08-07",
+      "2026-07-26"
+     ],
+     "after": [
+      "2026-08-31",
+      "2026-09-12"
+     ],
+     "valley_seen_pct": 0.6,
+     "shift_db": [
+      -0.12,
+      0.61
+     ],
+     "noise_db": 0.88,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    }
+   ],
+   "ours_optical": {
+    "before": "2026-08-12",
+    "after": "2026-08-27",
+    "clear_valley_pct": 67.9
+   }
+  }
+ },
+ {
+  "aoi": "AOI02",
+  "place": "Timure",
+  "run": "fb7507902568",
+  "aoi_km2": 2.97,
+  "aoi_covered_by_our_box": 1.0,
+  "flood_extent": {
+   "ours_km2": 0.429,
+   "ems_km2": 1.294,
+   "iou": 0.33,
+   "precision": 0.997,
+   "recall": 0.331,
+   "f1": 0.497,
+   "precision_20m": 1.0,
+   "recall_20m": 0.566,
+   "f1_20m": 0.723
+  },
+  "flood_extent_incl_low": {
+   "ours_km2": 0.493,
+   "ems_km2": 1.294,
+   "iou": 0.379,
+   "precision": 0.997,
+   "recall": 0.38,
+   "f1": 0.55,
+   "precision_20m": 1.0,
+   "recall_20m": 0.615,
+   "f1_20m": 0.762
+  },
+  "buildings": {
+   "ems_affected": 431,
+   "ours_hit_osm": 175,
+   "found_within_20m_pct": 72.2,
+   "found_destroyed_pct": 81.5,
+   "ems_destroyed": 372,
+   "found_damaged_pct": 21.2,
+   "ems_damaged": 33,
+   "found_possibly_damaged_pct": 3.8,
+   "ems_possibly_damaged": 26
+  },
+  "roads": {
+   "ems_affected_km": 9.7,
+   "ems_total_km": 9.7,
+   "ours_cut_km": 5.8,
+   "ems_affected_found_within_20m_pct": 70.9
+  },
+  "bridges": {
+   "ems_affected": 1,
+   "ours_hit_osm": 4,
+   "ems_bridges_on_our_flood_pct": 100.0
+  },
+  "image_dates": {
+   "ours_radar": [
+    {
+     "track": 85,
+     "direction": "ascending",
+     "before": [
+      "2026-08-16",
+      "2026-08-04",
+      "2026-07-23"
+     ],
+     "after": [
+      "2026-08-28",
+      "2026-09-09"
+     ],
+     "valley_seen_pct": 99.4,
+     "shift_db": [
+      -0.17,
+      -0.42
+     ],
+     "noise_db": 0.91,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    },
+    {
+     "track": 121,
+     "direction": "descending",
+     "before": [
+      "2026-08-19",
+      "2026-08-07",
+      "2026-07-26"
+     ],
+     "after": [
+      "2026-08-31",
+      "2026-09-12"
+     ],
+     "valley_seen_pct": 0.6,
+     "shift_db": [
+      -0.12,
+      0.61
+     ],
+     "noise_db": 0.88,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    }
+   ],
+   "ours_optical": {
+    "before": "2026-08-12",
+    "after": "2026-08-27",
+    "clear_valley_pct": 67.9
+   }
+  }
+ },
+ {
+  "aoi": "AOI03",
+  "place": "Bidur",
+  "run": "e600e350435e",
+  "aoi_km2": 21.12,
+  "aoi_covered_by_our_box": 1.0,
+  "flood_extent": {
+   "ours_km2": 5.086,
+   "ems_km2": 7.014,
+   "iou": 0.654,
+   "precision": 0.94,
+   "recall": 0.682,
+   "f1": 0.791,
+   "precision_20m": 0.971,
+   "recall_20m": 0.872,
+   "f1_20m": 0.919
+  },
+  "flood_extent_incl_low": {
+   "ours_km2": 6.186,
+   "ems_km2": 7.014,
+   "iou": 0.787,
+   "precision": 0.94,
+   "recall": 0.829,
+   "f1": 0.881,
+   "precision_20m": 0.968,
+   "recall_20m": 0.949,
+   "f1_20m": 0.958
+  },
+  "buildings": {
+   "ems_affected": 3058,
+   "ours_hit_osm": 1672,
+   "found_within_20m_pct": 90.6,
+   "found_destroyed_pct": 98.5,
+   "ems_destroyed": 2479,
+   "found_damaged_pct": 85.4,
+   "ems_damaged": 246,
+   "found_possibly_damaged_pct": 35.7,
+   "ems_possibly_damaged": 333
+  },
+  "roads": {
+   "ems_affected_km": 49.77,
+   "ems_total_km": 132.1,
+   "ours_cut_km": 45.02,
+   "ems_affected_found_within_20m_pct": 85.8
+  },
+  "bridges": {
+   "ems_affected": 26,
+   "ours_hit_osm": 19,
+   "ems_bridges_on_our_flood_pct": 96.2
+  },
+  "image_dates": {
+   "ours_radar": [
+    {
+     "track": 85,
+     "direction": "ascending",
+     "before": [
+      "2026-08-16",
+      "2026-08-04",
+      "2026-07-23"
+     ],
+     "after": [
+      "2026-08-28",
+      "2026-09-09"
+     ],
+     "valley_seen_pct": 99.9,
+     "shift_db": [
+      -0.25,
+      -0.16
+     ],
+     "noise_db": 1.11,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    },
+    {
+     "track": 19,
+     "direction": "descending",
+     "before": [
+      "2026-08-24",
+      "2026-08-12",
+      "2026-07-31"
+     ],
+     "after": [
+      "2026-09-05",
+      "2026-09-17"
+     ],
+     "valley_seen_pct": 99.8,
+     "shift_db": [
+      -0.49,
+      -0.25
+     ],
+     "noise_db": 1.09,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    }
+   ],
+   "ours_optical": {
+    "before": "2026-08-12",
+    "after": "2026-08-27",
+    "clear_valley_pct": 93.0
+   }
+  }
+ },
+ {
+  "aoi": "AOI05",
+  "place": "Phosretar",
+  "run": "5f7177780bb4",
+  "aoi_km2": 23.93,
+  "aoi_covered_by_our_box": 1.0,
+  "flood_extent": {
+   "ours_km2": 2.702,
+   "ems_km2": 6.393,
+   "iou": 0.414,
+   "precision": 0.986,
+   "recall": 0.417,
+   "f1": 0.586,
+   "precision_20m": 0.998,
+   "recall_20m": 0.587,
+   "f1_20m": 0.739
+  },
+  "flood_extent_incl_low": {
+   "ours_km2": 4.832,
+   "ems_km2": 6.393,
+   "iou": 0.72,
+   "precision": 0.973,
+   "recall": 0.735,
+   "f1": 0.838,
+   "precision_20m": 0.989,
+   "recall_20m": 0.881,
+   "f1_20m": 0.932
+  },
+  "buildings": {
+   "ems_affected": 763,
+   "ours_hit_osm": 201,
+   "found_within_20m_pct": 55.7,
+   "found_destroyed_pct": 79.3,
+   "ems_destroyed": 397,
+   "found_damaged_pct": 50.0,
+   "ems_damaged": 116,
+   "found_possibly_damaged_pct": 20.8,
+   "ems_possibly_damaged": 250
+  },
+  "roads": {
+   "ems_affected_km": 24.67,
+   "ems_total_km": 112.55,
+   "ours_cut_km": 11.38,
+   "ems_affected_found_within_20m_pct": 51.7
+  },
+  "bridges": {
+   "ems_affected": 22,
+   "ours_hit_osm": 4,
+   "ems_bridges_on_our_flood_pct": 54.5
+  },
+  "image_dates": {
+   "ours_radar": [
+    {
+     "track": 85,
+     "direction": "ascending",
+     "before": [
+      "2026-08-16",
+      "2026-08-04",
+      "2026-07-23"
+     ],
+     "after": [
+      "2026-08-28",
+      "2026-09-09"
+     ],
+     "valley_seen_pct": 99.7,
+     "shift_db": [
+      -0.28,
+      -0.3
+     ],
+     "noise_db": 1.05,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    },
+    {
+     "track": 19,
+     "direction": "descending",
+     "before": [
+      "2026-08-24",
+      "2026-08-12",
+      "2026-07-31"
+     ],
+     "after": [
+      "2026-09-05",
+      "2026-09-17"
+     ],
+     "valley_seen_pct": 99.7,
+     "shift_db": [
+      -0.44,
+      -0.27
+     ],
+     "noise_db": 1.04,
+     "water_threshold_db": -16.0,
+     "water_threshold_method": "default"
+    }
+   ],
+   "ours_optical": {
+    "before": "2026-08-12",
+    "after": "2026-08-27",
+    "clear_valley_pct": 94.2
+   }
+  }
+ }
+]
