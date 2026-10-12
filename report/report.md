@@ -2,7 +2,7 @@
 
 **Multimodal AI Hackathon 2026 · Track B: Mapping Flood Damage from Space**
 
-Author: Suraj Mishra · Code: github.com/YOUR-NAME/flood-from-space · Video: youtu.be/YOUR-VIDEO
+Author: Suraj Mishra · Code: github.com/surajmishra-tech/flood-from-space · Video: youtu.be/YOUR-VIDEO
 
 ## 1. Problem and what we built
 
