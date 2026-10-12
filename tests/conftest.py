@@ -3,11 +3,27 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 from pathlib import Path
 
 import pytest
 
 os.environ.setdefault("FLOOD_TESTS", "1")  # web.app: leave saved results alone
+
+# On GitHub's Linux machines Python can crash while closing down, after every test has passed
+# (two of the libraries each bring their own copy of GDAL). There, leave straight after the report.
+_exit_code = {"value": 0}
+
+
+def pytest_sessionfinish(session, exitstatus):
+    _exit_code["value"] = int(exitstatus)
+
+
+def pytest_unconfigure(config):
+    if os.getenv("CI"):
+        sys.stdout.flush()
+        sys.stderr.flush()
+        os._exit(_exit_code["value"])
 
 ROOT = Path(__file__).resolve().parents[1]
 MAIN_RUN = ROOT / "runs" / "fb7507902568"   # Upper Trishuli, 26 Aug 2026 (the main saved result)
