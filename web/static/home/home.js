@@ -949,7 +949,7 @@ addEventListener("keydown", (e) => { if (e.key === "Escape" && T < END) jump(END
 // The dashboard opens with the main Trishuli result if this copy has it
 fetch("/api/runs").then((r) => r.json()).then((runs) => {
   const done = runs.filter((r) => r.status === "done");
-  const pick = done.find((r) => r.run_id === "fb7507902568")
+  const pick = done.find((r) => r.featured)
     || done.find((r) => /trishuli/i.test(r.name || "") && r.flood_date === "2026-08-26")
     || done.find((r) => r.flood_date === "2026-08-26") || done[0];
   if (pick) go.href = `/app?run=${encodeURIComponent(pick.run_id)}`;

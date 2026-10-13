@@ -14,7 +14,7 @@ from functools import lru_cache
 import geopandas as gpd
 from shapely.geometry import Point
 
-from .config import RUNS_DIR
+from .config import FEATURED_RUN, RUNS_DIR
 from .grid import utm_crs
 
 NEAR_FLOOD_M = 100     # in or right next to the mapped flood / debris
@@ -47,10 +47,16 @@ def done_runs() -> list[dict]:
     return out
 
 
+def best_first(runs: list[dict]) -> list[dict]:
+    """Newest flood first (a dry-season test or an older flood never wins over the latest event); for the
+    same flood, the featured result, then named results over quick unnamed tests, then the newest run."""
+    return sorted(runs, key=lambda r: (r.get("flood_date") or "", r.get("run_id") == FEATURED_RUN,
+                                       bool(r.get("name")), r.get("started") or ""), reverse=True)
+
+
 def runs_covering(lon: float, lat: float) -> list[dict]:
-    """Finished runs whose box contains the point: newest flood date first, then newest run."""
-    hits = [r for r in done_runs() if r["bbox"][0] <= lon <= r["bbox"][2] and r["bbox"][1] <= lat <= r["bbox"][3]]
-    return sorted(hits, key=lambda r: (r.get("flood_date") or "", r.get("started") or ""), reverse=True)
+    """Finished runs whose box contains the point, best first."""
+    return best_first([r for r in done_runs() if r["bbox"][0] <= lon <= r["bbox"][2] and r["bbox"][1] <= lat <= r["bbox"][3]])
 
 
 @lru_cache(maxsize=16)
@@ -87,7 +93,8 @@ def _latest_image(facts: dict) -> str | None:
 def check(lon: float, lat: float, rid: str | None = None) -> dict:
     """Danger level for one place, from the maps of the best finished run that covers it."""
     runs = runs_covering(lon, lat)
-    if rid and any(r["run_id"] == rid for r in runs):
+    # the map open on the page is used only if it shows the latest flood here (never a dry-season test or an old flood)
+    if rid and any(r["run_id"] == rid and r.get("flood_date") == runs[0].get("flood_date") for r in runs):
         run = next(r for r in runs if r["run_id"] == rid)
     elif runs:
         run = runs[0]

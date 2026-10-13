@@ -19,7 +19,7 @@ from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from floodmap.config import RUNS_DIR  # also loads .env
+from floodmap.config import FEATURED_RUN, RUNS_DIR  # also loads .env
 from floodmap.grid import make_grid
 from floodmap.pipeline import run_id
 from web import helpdesk
@@ -217,8 +217,9 @@ def list_runs():
                     i = json.loads(f.read_text(encoding="utf-8"))
                 except json.JSONDecodeError:
                     continue
-                out.append({k: i.get(k) for k in ("run_id", "name", "bbox", "flood_date", "status", "progress",
-                                                    "message", "started", "res_m", "source")})
+                out.append({**{k: i.get(k) for k in ("run_id", "name", "bbox", "flood_date", "status", "progress",
+                                                       "message", "started", "res_m", "source")},
+                            "featured": i.get("run_id") == FEATURED_RUN})
     return sorted(out, key=lambda r: r.get("started") or "", reverse=True)
 
 

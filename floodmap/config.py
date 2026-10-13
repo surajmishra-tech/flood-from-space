@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
 RUNS_DIR = ROOT / "runs"
+# The main saved result: opened when a link names none, and preferred by the danger check for its flood
+FEATURED_RUN = os.getenv("FEATURED_RUN", "fb7507902568").strip()
 CACHE_DIR = ROOT / "cache"
 
 DATA_SOURCE = os.getenv("DATA_SOURCE", "pc").strip().lower()

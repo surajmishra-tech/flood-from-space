@@ -33,6 +33,22 @@ def test_a_place_far_from_the_phone_is_refused_and_a_real_one_is_saved(client):
     assert len(helpdesk.all_requests()) == 1
 
 
+def test_the_danger_check_uses_the_latest_flood_not_a_dry_season_test():
+    from floodmap.safety import best_first
+    runs = [{"run_id": "dry", "name": "No-flood test", "flood_date": "2026-04-15", "started": "2026-10-08"},
+            {"run_id": "quick", "name": None, "flood_date": "2026-08-26", "started": "2026-10-13"},
+            {"run_id": "old", "name": "Rasuwa 2025", "flood_date": "2025-07-08", "started": "2026-10-03"},
+            {"run_id": "fb7507902568", "name": "Upper Trishuli", "flood_date": "2026-08-26", "started": "2026-10-03"}]
+    assert [r["run_id"] for r in best_first(runs)] == ["fb7507902568", "quick", "dry", "old"]
+
+
+@needs_main_run
+def test_a_phone_in_rasuwa_gadhi_gets_danger_even_with_a_test_map_open():
+    from floodmap.safety import check
+    r = check(RASUWA_GADHI["lon"], RASUWA_GADHI["lat"], rid="fbdf29eca776")   # the dry-season test, if this copy has it
+    assert r["run_id"] == "fb7507902568" and r["level"] == "danger"
+
+
 def test_the_inbox_needs_the_pin_and_locks_after_ten_wrong_tries(client, monkeypatch):
     monkeypatch.setattr(webapp, "RESCUE_PIN", "2468")
     assert client.get("/api/help").status_code == 401

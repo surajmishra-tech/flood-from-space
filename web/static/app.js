@@ -695,9 +695,10 @@ loadRunList().then((runs) => {
     return;
   }
   const wanted = qs.get("run");  // e.g. /?run=fb7507902568
-  // open the asked-for run, else the one this browser viewed last, else the newest named one (unnamed runs are quick tests)
+  // open the asked-for run, else the one this browser viewed last, else the main case study, else the newest named one
   const ok = (id) => runs.find((r) => r.run_id === id && r.status === "done");
-  const done = ok(wanted) || ok(store.get("run")) || runs.find((r) => r.status === "done" && r.name)
+  const done = ok(wanted) || ok(store.get("run")) || runs.find((r) => r.status === "done" && r.featured)
+    || runs.find((r) => r.status === "done" && r.name)
     || runs.find((r) => r.status === "done");
   if (done) { $("runs").value = done.run_id; openRun(done.run_id); }
 });
