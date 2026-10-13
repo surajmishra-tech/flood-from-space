@@ -4,9 +4,11 @@
 
 **Author:** Suraj Mishra
 
+**Try it live (during judging, 15–21 Oct 2026):** https://65-2-33-215.sslip.io (dashboard: [/app](https://65-2-33-215.sslip.io/app)). New areas and dates run on the server in about 2–6 minutes.
+
 When roads, bridges and phone lines are gone, rescuers still need to know where the damage is and who is cut off. This system tells them, from space, for **any area and any flood date**:
 
-1. **Where did the flood hit?** Flooded and debris-covered ground from Sentinel-1 radar (sees through clouds), checked with Sentinel-2 photos when the sky is clear.
+1. **Where did the flood hit?** Flooded and debris-covered ground from Sentinel-1 radar (sees through clouds), checked with Sentinel-2 photos when the sky is clear. A lighter **possible damage** zone adds the low valley floor next to confirmed debris (terrain-based), which lifts recall against the official EMS map from 0.52 to 0.80.
 2. **What was damaged?** OpenStreetMap buildings, roads and bridges *as they were before the flood*, overlaid on the flood map.
 3. **Who is cut off?** Villages that lost every road connection to a town or hospital, with the broken road or bridge that caused it.
 
