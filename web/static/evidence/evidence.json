@@ -83,7 +83,15 @@
     "destroyed_found_pct": 87.9,
     "ems_destroyed": 323,
     "bridges_found": 5,
-    "bridges_ems": 5
+    "bridges_ems": 5,
+    "with_possible": {
+     "ours_km2": 0.682,
+     "precision": 0.987,
+     "recall": 0.606,
+     "f1": 0.751,
+     "f1_20m": 0.861,
+     "destroyed_found_pct": 92.6
+    }
    },
    {
     "place": "Timure",
@@ -97,7 +105,15 @@
     "destroyed_found_pct": 81.5,
     "ems_destroyed": 372,
     "bridges_found": 1,
-    "bridges_ems": 1
+    "bridges_ems": 1,
+    "with_possible": {
+     "ours_km2": 0.879,
+     "precision": 0.99,
+     "recall": 0.673,
+     "f1": 0.801,
+     "f1_20m": 0.887,
+     "destroyed_found_pct": 87.9
+    }
    },
    {
     "place": "Bidur",
@@ -111,7 +127,15 @@
     "destroyed_found_pct": 98.5,
     "ems_destroyed": 2479,
     "bridges_found": 25,
-    "bridges_ems": 26
+    "bridges_ems": 26,
+    "with_possible": {
+     "ours_km2": 7.096,
+     "precision": 0.913,
+     "recall": 0.923,
+     "f1": 0.918,
+     "f1_20m": 0.965,
+     "destroyed_found_pct": 99.2
+    }
    },
    {
     "place": "Phosretar",
@@ -125,7 +149,15 @@
     "destroyed_found_pct": 79.3,
     "ems_destroyed": 397,
     "bridges_found": 12,
-    "bridges_ems": 22
+    "bridges_ems": 22,
+    "with_possible": {
+     "ours_km2": 4.698,
+     "precision": 0.977,
+     "recall": 0.718,
+     "f1": 0.828,
+     "f1_20m": 0.89,
+     "destroyed_found_pct": 85.1
+    }
    }
   ],
   "pooled": {
@@ -134,12 +166,19 @@
    "f1": 0.68,
    "ems_km2": 15.8,
    "ours_km2": 8.6
+  },
+  "pooled_with_possible": {
+   "precision": 0.94,
+   "recall": 0.8,
+   "f1": 0.86,
+   "ours_km2": 13.4
   }
  },
  "control": {
   "run_id": "fbdf29eca776",
   "date": "2026-04-15",
   "flood_km2": 0.061,
+  "possible_km2": 0.0,
   "buildings_hit": 2,
   "bridges_hit": 0,
   "cut_off": 0
@@ -290,9 +329,9 @@
  },
  "ai": {
   "question": "Which villages need help first, and why?",
-  "answer": "The villages that need help first are Resuo and Rasuwa Gadhi because they have the highest rescue priority scores of 88 and 78. They also have many nearby buildings (87 and 107) and many broken road sections on their old routes (16 and 16). The next villages in order are Aamachhodingmo, Bahun Danda, Lingling and Dalphedi with lower priority scores. The map can show these priority scores, building counts, road breaks and distances, but cannot provide casualty numbers or other details.",
-  "model_text": "The villages that need help first are {cutoff1_name} and {cutoff2_name} because they have the highest rescue priority scores of {cutoff1_priority} and {cutoff2_priority}. They also have many nearby buildings ({cutoff1_buildings} and {cutoff2_buildings}) and many broken road sections on their old routes ({cutoff1_breaks} and {cutoff2_breaks}). The next villages in order are {cutoff3_name}, {cutoff4_name}, {cutoff5_name} and {cutoff6_name} with lower priority scores. The map can show these priority scores, building counts, road breaks and distances, but cannot provide casualty numbers or other details.",
-  "values": 12,
+  "answer": "The villages that need help first are Resuo with priority 88, followed by Rasuwa Gadhi with priority 78, then Aamachhodingmo with priority 69. They are ranked by the rescue priority scores that combine size, damage, isolation and remoteness. The map shows which settlements are cut off and how many road breaks block their routes.",
+  "model_text": "The villages that need help first are {cutoff1_name} with priority {cutoff1_priority}, followed by {cutoff2_name} with priority {cutoff2_priority}, then {cutoff3_name} with priority {cutoff3_priority}. They are ranked by the rescue priority scores that combine size, damage, isolation and remoteness. The map shows which settlements are cut off and how many road breaks block their routes.",
+  "values": 6,
   "by": "Groq · openai/gpt-oss-120b"
  }
 }

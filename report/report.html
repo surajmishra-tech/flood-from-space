@@ -207,7 +207,7 @@ code { font-family: Courier; font-size: 8.4pt; }
 </tr>
 </tbody>
 </table>
-<p style="text-align:center"><img src="figures/case_study_maps.png" style="width:17.5cm"></p><p class="cap">Green = both, orange = only ours, purple = only EMS, black dots = EMS destroyed buildings. Left to right: Syabrubesi, Bidur, Phosretar.</p>
+<p style="text-align:center"><img src="figures/case_study_maps.png" style="width:17.5cm"></p><p class="cap">Green = confirmed and EMS, light green = possible zone and EMS, orange = only ours, purple = only EMS, black dots = EMS destroyed buildings. Left to right: Syabrubesi, Bidur, Phosretar.</p>
 <p><strong>What the numbers say:</strong></p>
 <ul>
 <li><strong>Almost no false alarms.</strong> 96% of what we map lies inside the EMS damage area.</li>
@@ -219,6 +219,71 @@ code { font-family: Courier; font-size: 8.4pt; }
 </ul>
 </li>
 </ul>
+<p><strong>Second map: "possible damage".</strong> The confirmed map stays as it is. Next to it we draw a lighter zone: land next to a real damage
+patch (≥ 1 ha) that is no higher above the river than the debris confirmed within 300 m, and not a steep slope. It uses only our
+own map and the height model. Its four settings were picked after a small check against EMSR927 and the no-flood test, so we
+always report it separately. Rescue numbers still use the confirmed map only.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Ours km²</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1</th>
+<th>F1 (20 m)</th>
+<th>EMS-destroyed buildings found</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Syabrubesi</td>
+<td>0.68</td>
+<td>0.99</td>
+<td>0.61</td>
+<td>0.75</td>
+<td>0.86</td>
+<td>93%</td>
+</tr>
+<tr>
+<td>Timure</td>
+<td>0.88</td>
+<td>0.99</td>
+<td>0.67</td>
+<td>0.80</td>
+<td>0.89</td>
+<td>88%</td>
+</tr>
+<tr>
+<td>Bidur</td>
+<td>7.10</td>
+<td>0.91</td>
+<td>0.92</td>
+<td><strong>0.92</strong></td>
+<td><strong>0.96</strong></td>
+<td>99.2%</td>
+</tr>
+<tr>
+<td>Phosretar</td>
+<td>4.70</td>
+<td>0.98</td>
+<td>0.72</td>
+<td>0.83</td>
+<td>0.89</td>
+<td>85%</td>
+</tr>
+<tr>
+<td><strong>All, pooled</strong></td>
+<td>13.4</td>
+<td><strong>0.94</strong></td>
+<td><strong>0.80</strong></td>
+<td><strong>0.86</strong></td>
+<td>–</td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<p>Recall rises from 0.52 to <strong>0.80</strong> while precision stays <strong>0.94</strong> (pooled F1 0.68 → <strong>0.86</strong>). On the no-flood test the zone adds <strong>0.00 km²</strong>.</p>
 <p><strong>Who is cut off (case-study runs):</strong></p>
 <table>
 <thead>

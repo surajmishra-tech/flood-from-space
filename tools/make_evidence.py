@@ -134,21 +134,29 @@ def best_window(rid, win):
 def ems_numbers():
     rows = json.loads((ROOT / "report" / "case_study_emsr927.json").read_text(encoding="utf-8"))
     out, tp, ours, ems = [], 0.0, 0.0, 0.0
+    tp_w, ours_w = 0.0, 0.0     # confirmed map + the lighter "possible damage" zone
     for r in rows:
-        fe = r["flood_extent"]
+        fe, fw = r["flood_extent"], r.get("flood_extent_with_possible") or r["flood_extent"]
         tp += fe["precision"] * fe["ours_km2"]
         ours += fe["ours_km2"]
         ems += fe["ems_km2"]
+        tp_w += fw["precision"] * fw["ours_km2"]
+        ours_w += fw["ours_km2"]
         out.append({
             "place": r["place"], "aoi": r["aoi"], "ems_km2": fe["ems_km2"], "ours_km2": fe["ours_km2"],
             "precision": fe["precision"], "recall": fe["recall"], "f1": fe["f1"], "f1_20m": fe["f1_20m"],
             "destroyed_found_pct": r["buildings"].get("found_destroyed_pct"), "ems_destroyed": r["buildings"].get("ems_destroyed"),
             "bridges_found": round(r["bridges"]["ems_affected"] * r["bridges"]["ems_bridges_on_our_flood_pct"] / 100),
             "bridges_ems": r["bridges"]["ems_affected"],
+            "with_possible": {"ours_km2": fw["ours_km2"], "precision": fw["precision"], "recall": fw["recall"], "f1": fw["f1"],
+                              "f1_20m": fw["f1_20m"], "destroyed_found_pct": r["buildings"].get("found_destroyed_pct_with_possible")},
         })
     p, rc = tp / ours, tp / ems
+    pw, rw = tp_w / ours_w, tp_w / ems
     return {"rows": out, "pooled": {"precision": round(p, 2), "recall": round(rc, 2), "f1": round(2 * p * rc / (p + rc), 2),
-                                     "ems_km2": round(ems, 1), "ours_km2": round(ours, 1)}}
+                                     "ems_km2": round(ems, 1), "ours_km2": round(ours, 1)},
+            "pooled_with_possible": {"precision": round(pw, 2), "recall": round(rw, 2), "f1": round(2 * pw * rw / (pw + rw), 2),
+                                     "ours_km2": round(ours_w, 1)}}
 
 
 def copilot_example(question):
@@ -253,6 +261,7 @@ def main():
         "ems": ems_numbers(),
         "control": {
             "run_id": CONTROL, "date": run_info(CONTROL)["flood_date"], "flood_km2": fc["flood"]["flood_km2"],
+            "possible_km2": fc["flood"].get("possible_km2"),
             "buildings_hit": fc["buildings"]["hit"], "bridges_hit": fc["bridges"]["hit"], "cut_off": fc["settlements"]["cut_off"],
         },
         "floods": floods,

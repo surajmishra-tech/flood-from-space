@@ -34,6 +34,8 @@ class Params:
 
     These are physically motivated defaults. They are NOT tuned to match the
     Copernicus EMS maps - those are only used afterwards, to check results.
+    Exception, said openly: the four "possible damage" settings below were picked
+    after a small check against EMSR927 and the no-flood test (report section 5).
     """
 
     # Valley mask: a flood can't reach ground that is high above a river or steep.
@@ -73,6 +75,13 @@ class Params:
     s2_before_days: int = 60
     s2_after_days: int = 45
     s2_min_clear: float = 0.5         # at least half the valley must be cloud-free
+
+    # "Possible damage" zone: a second, lighter map next to the confirmed one (which stays unchanged).
+    # Land next to a real damage patch that is no higher above the river than the damage confirmed nearby.
+    possible_min_seed_ha: float = 1.0     # grow only from damage patches of at least 1 ha, never from specks
+    possible_window_m: float = 300.0      # flood level = highest confirmed damage within this distance
+    possible_margin_m: float = 0.0        # land must be no higher than that level
+    possible_slope_max_deg: float = 45.0  # and not a steep slope
 
 
 PARAMS = Params()

@@ -23,6 +23,7 @@ import warnings
 from dataclasses import dataclass, field
 
 import numpy as np
+from scipy import ndimage as ndi
 from scipy.ndimage import uniform_filter
 from skimage.filters import threshold_otsu
 from skimage.morphology import remove_small_holes, remove_small_objects
@@ -231,3 +232,27 @@ def map_flood(tracks: list[dict], optical: dict | None, valley: np.ndarray, res:
         "optical_clear_valley_pct": optical["clear_pct"] if optical else None,
     }
     return FloodResult(cls=cls, conf=conf, valley=valley, score=z, stats=stats)
+
+
+def possible_zone(conf: np.ndarray, hand: np.ndarray, slope: np.ndarray, res: float, params=PARAMS) -> np.ndarray:
+    """Land the flood very likely also reached, from our own confirmed map and the terrain only.
+
+    Where we confirm damage, the debris reached that height above the river. Land next to it that is
+    no higher above the river, not steep, and connected to a real damage patch (at least 1 ha) was
+    probably hit too, even where radar and photos show no clear change (radar shadow, mud that looks
+    like the old riverbed). Returns the extra area only; the confirmed map is not changed.
+    """
+    confirmed = conf >= MEDIUM
+    labels, n = ndi.label(confirmed)
+    if not n:
+        return np.zeros(conf.shape, bool)
+    size_ha = ndi.sum(confirmed, labels, index=np.arange(1, n + 1)) * res * res / 1e4
+    seed = np.concatenate([[False], size_ha >= params.possible_min_seed_ha])[labels]
+    level = np.where(seed & np.isfinite(hand), hand, -1.0).astype("float32")
+    level = ndi.grey_erosion(level, size=3)     # inner pixels only: one wild edge pixel can't raise the level
+    k = max(3, int(params.possible_window_m / res) | 1)
+    level = ndi.maximum_filter(level, size=k)
+    with np.errstate(invalid="ignore"):
+        low_land = (level >= 0) & np.isfinite(hand) & (hand <= level + params.possible_margin_m) &                    (slope <= params.possible_slope_max_deg)
+    grown = ndi.binary_propagation(seed & low_land, mask=low_land | seed)   # connected to the damage only
+    return grown & ~confirmed

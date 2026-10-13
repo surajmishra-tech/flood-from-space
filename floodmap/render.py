@@ -14,6 +14,7 @@ FLOOD_COLORS = {  # (class, confidence) -> RGBA
     "river": (120, 170, 230),
     "nodata": (150, 150, 150),
 }
+POSSIBLE_RGB = (167, 139, 250)  # "possible damage" zone (violet, lighter than the confirmed map)
 
 
 def save_overlay(rgba: np.ndarray, grid: Grid, path, max_px: int = 4096) -> list:

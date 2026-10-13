@@ -142,6 +142,7 @@ async function openRun(rid, { fit = true } = {}) {
   img("radar_after", "Radar after (Sentinel-1)", false);
   img("radar_change", "Radar change score", false, 0.9);
   img("valley", "Valley floor checked", false, 0.8);
+  runRefs.possible = img("possible", "Possible damage (terrain, not confirmed)", true, 0.8);
   runRefs.flood = img("flood", "Flood / debris map", true, 0.9);
 
   const gj = async (name) => (await fetch(`/api/runs/${rid}/layers/${name}`)).json();
@@ -221,7 +222,7 @@ function applyStatus() {
   });
 }
 const keyLayer = (k) => ({
-  names: placeNames, help: helpLayer, here: hereLayer, flood: runRefs.flood, roads: runRefs.roads,
+  names: placeNames, help: helpLayer, here: hereLayer, flood: runRefs.flood, possible: runRefs.possible, roads: runRefs.roads,
   buildings: runRefs.buildings, bridges: runRefs.bridges, hospitals: runRefs.hospitals, aoi: runRefs.aoi,
 }[k]);
 function syncKey() {
@@ -284,7 +285,7 @@ function showFacts(f, rid, seLayer) {
   $("runChipDate").textContent = f.meta.flood_date;
   const t = (cls, label, value) => `<div class="kpi ${cls}"><span>${label}</span><b>${value}</b></div>`;
   $("tiles").innerHTML = [
-    t("k-flood", "Flooded / debris", `${fmt(f.flood.flood_km2, 2)} <small>km²</small>`),
+    t("k-flood", "Flooded / debris", `${fmt(f.flood.flood_km2, 2)} <small>km²${f.flood.possible_km2 ? ` +${fmt(f.flood.possible_km2, 1)} possible` : ""}</small>`),
     t("k-bld", "Buildings hit", `${fmt(f.buildings.hit)} <small>of ${fmt(f.buildings.total)}</small>`),
     t("k-road", "Road under flood", `${fmt(f.roads.flooded_km, 1)} <small>km</small>`),
     t("k-bridge", "Bridges reached", `${fmt(f.bridges.hit)} <small>of ${fmt(f.bridges.total)}</small>`),

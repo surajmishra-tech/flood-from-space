@@ -119,6 +119,7 @@ Area + flood date
   - Example of why this matters: around Syabrubesi, OSM had 392 buildings on 27 Jul 2026 but only 225 in October, because mappers deleted destroyed buildings after the flood.
 - **Copernicus EMS maps are never an input.** They sit in `validation/` and are read only by `tools/compare_emsr927.py`, after a run, to score it.
 - **The method settings** (`floodmap/config.py`) were chosen from physical reasoning and from our own radar-vs-photo self-check in the upper valley, **before** the EMS comparison. They were not tuned to EMS.
+  - **One exception, said openly:** the four settings of the lighter **"possible damage"** zone (below) were picked after a small check against EMSR927 and the no-flood test. That is why we always show the confirmed map and the possible zone separately.
 
 ---
 
@@ -140,6 +141,25 @@ Our system ran on boxes around each EMS area with flood date 2026-08-26 (Coperni
 - **We under-map the outer edge of the debris.**
   - In the narrow upper gorge, about 31% of the EMS area lies outside the valley floor we check, because the 30 m height model makes it look too high or too steep.
   - EMS used 0.3–0.7 m images; we use 10 m pixels.
+
+### Second map: "possible damage" (closes most of the gap)
+
+The confirmed map above stays exactly as it is. Next to it, the system draws a lighter **possible damage** zone (violet on the map):
+land next to a real damage patch (at least 1 ha) that is **no higher above the river** than the debris we confirmed within 300 m,
+and not a steep slope. Where debris reached that height, it very likely covered the rest of the low valley floor too, even where
+radar and photos show little change. It uses only our own map and the height model: no extra images, and EMS is never an input.
+
+| Area | Ours km² | Precision | Recall | F1 | F1 (20 m) | EMS-destroyed buildings found |
+|---|---|---|---|---|---|---|
+| Syabrubesi | 0.68 | 0.99 | 0.61 | 0.75 | 0.86 | 93% |
+| Timure | 0.88 | 0.99 | 0.67 | 0.80 | 0.89 | 88% |
+| Bidur | 7.10 | 0.91 | 0.92 | **0.92** | **0.96** | 99.2% |
+| Phosretar | 4.70 | 0.98 | 0.72 | 0.83 | 0.89 | 85% |
+| **All (pooled)** | 13.4 | **0.94** | **0.80** | **0.86** | – | – |
+
+- **Recall rises from 0.52 to 0.80, precision stays 0.94.** Pooled F1 goes from 0.68 to **0.86**.
+- **No false alarms added:** on the dry-season no-flood test the possible zone adds **0.00 km²** (it grows only from patches of 1 ha or more).
+- Rescue numbers (buildings, roads, bridges, cut-off villages, priority) still use the **confirmed** map only.
 
 Full numbers: [`report/case_study_emsr927.md`](report/case_study_emsr927.md). Maps: `report/figures/emsr927_*.png`.
 

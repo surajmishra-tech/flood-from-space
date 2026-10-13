@@ -231,6 +231,10 @@ def _run(out: Path, bbox, flood_date: date, src_name: str, grid: Grid, time_utc,
     overlays["radar_change"] = render.save_overlay(render.diverging(np.where(valley, fr.score, np.nan)), grid,
                                                    out / "overlays" / "radar_change.png")
     flood_mask = fr.conf >= F.MEDIUM
+    possible = F.possible_zone(fr.conf, hand, slope, grid.res, params)   # second, lighter map; the confirmed one is unchanged
+    write_tif(out / "rasters" / "flood_possible.tif", possible.astype("uint8"), grid, nodata=None)
+    overlays["possible"] = render.save_overlay(render.mask_rgba(possible, render.POSSIBLE_RGB, 120), grid, out / "overlays" / "possible.png")
+    fr.stats["possible_km2"] = round(float(possible.sum()) * grid.res ** 2 / 1e6, 3)
     polys = []
     code = np.where(fr.conf > 0, fr.cls.astype("int32") * 10 + fr.conf, 0).astype("int32")
     for geom, val in features.shapes(code, mask=code > 0, transform=grid.transform):

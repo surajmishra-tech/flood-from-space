@@ -111,7 +111,7 @@ The scores compare our map (Medium+High) with the EMS "observed event" polygons 
 | Phosretar | 6.39 | 2.70 | 0.99 | 0.42 | 0.59 | 0.74 | 79 % (of 397) | 12 / 22 |
 | **All, pooled** | 15.8 | 8.6 | **0.96** | 0.52 | 0.68 | – | – | – |
 
-![Green = both, orange = only ours, purple = only EMS, black dots = EMS destroyed buildings. Left to right: Syabrubesi, Bidur, Phosretar.](figures/case_study_maps.png)
+![Green = confirmed and EMS, light green = possible zone and EMS, orange = only ours, purple = only EMS, black dots = EMS destroyed buildings. Left to right: Syabrubesi, Bidur, Phosretar.](figures/case_study_maps.png)
 
 **What the numbers say:**
 - **Almost no false alarms.** 96% of what we map lies inside the EMS damage area.
@@ -120,6 +120,21 @@ The scores compare our map (Medium+High) with the EMS "observed event" polygons 
   - In the narrow upper gorge (Syabrubesi, Timure), **31%** of the EMS area lies outside our valley-floor mask. In the 30 m DEM it looks more than 45 m above the river (16–17%) or steeper than 35° (14–15%).
   - In the wide lower valley (Bidur, Phosretar), 97–99% of the EMS area is inside the mask. There the misses come from the signal itself: mud and rock replacing forest change radar backscatter only a little.
   - At Phosretar, EMS used images from 31 Aug–5 Sep, later than ours, which also affects the overlap.
+
+**Second map: "possible damage".** The confirmed map stays as it is. Next to it we draw a lighter zone: land next to a real damage
+patch (≥ 1 ha) that is no higher above the river than the debris confirmed within 300 m, and not a steep slope. It uses only our
+own map and the height model. Its four settings were picked after a small check against EMSR927 and the no-flood test, so we
+always report it separately. Rescue numbers still use the confirmed map only.
+
+| Area | Ours km² | Precision | Recall | F1 | F1 (20 m) | EMS-destroyed buildings found |
+|---|---|---|---|---|---|---|
+| Syabrubesi | 0.68 | 0.99 | 0.61 | 0.75 | 0.86 | 93% |
+| Timure | 0.88 | 0.99 | 0.67 | 0.80 | 0.89 | 88% |
+| Bidur | 7.10 | 0.91 | 0.92 | **0.92** | **0.96** | 99.2% |
+| Phosretar | 4.70 | 0.98 | 0.72 | 0.83 | 0.89 | 85% |
+| **All, pooled** | 13.4 | **0.94** | **0.80** | **0.86** | – | – |
+
+Recall rises from 0.52 to **0.80** while precision stays **0.94** (pooled F1 0.68 → **0.86**). On the no-flood test the zone adds **0.00 km²**.
 
 **Who is cut off (case-study runs):**
 

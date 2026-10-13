@@ -188,6 +188,7 @@
     <button type="button" data-key="here"><i class="dot" style="background:#2563eb;outline:2px solid #bcd3ff"></i>you are here</button>
     <button type="button" data-key="flood"><i style="background:#d66e18"></i>debris / mud</button>
     <button type="button" data-key="flood"><i style="background:#1e6eff"></i>new water</button>
+    <button type="button" data-key="possible"><i style="background:#a78bfa"></i>possible damage</button>
     <button type="button" data-key="roads"><i class="line" style="background:#d7191c"></i>cut road</button>
     <button type="button" data-key="buildings"><i style="background:#d7191c;box-shadow:inset 0 0 0 1px #7f0000"></i>building hit</button>
     <button type="button" data-key="bridges"><i class="dot" style="background:#7f0000;box-shadow:0 0 0 1.5px #fff"></i>bridge (red = reached)</button>
@@ -352,6 +353,7 @@
       <li><b>Sentinel-1 radar</b><span>3 passes before and 2 after, from both directions; change detection finds new mud, debris and water.</span></li>
       <li><b>Copernicus height model</b><span>Only the valley floor is checked (low above the river, not too steep), so mountain slopes don't give false alarms.</span></li>
       <li><b>Sentinel-2 photos</b><span>Where the sky is clear, the photos confirm the radar (water and bare mud look different from forest).</span></li>
+      <li><b>Possible damage</b><span>A second, lighter map: land next to a real damage patch that is no higher above the river than the debris we confirmed there. The confirmed map stays separate.</span></li>
       <li><b>Map from before the flood</b><span>OpenStreetMap as it was before the flood: buildings, roads, bridges, villages, hospitals.</span></li>
       <li><b>Road network</b><span>Broken roads are removed; a village with no road left to a town or hospital is <b>cut off</b>, then ranked by rescue priority.</span></li>
       <li><b>AI copilot</b><span>Writes the situation report in English or Nepali. It writes only blanks; our code fills in every number.</span></li>
@@ -368,10 +370,13 @@
     <div class="ev-big" id="evBig"></div>
     <div class="ev-tablewrap"><table class="ev-table" id="evTable"></table></div>
     <figure class="ev-fig"><img src="/static/evidence/ems_compare.jpg" alt="Our flood map compared with the official EMS map" width="2000" height="720" loading="lazy">
-      <figcaption>Green = both maps agree · orange = only ours · purple = only EMS · black dots = buildings EMS marked as destroyed.
+      <figcaption>Green = our confirmed map and EMS agree · light green = our possible-damage zone and EMS agree · orange / light orange = only ours ·
+        purple = only EMS · black dots = buildings EMS marked as destroyed.
         Credit: European Union, Copernicus Emergency Management Service (EMSR927).</figcaption></figure>
-    <p class="ev-note"><b>Honest reading:</b> what we map is almost always real (high precision), but we miss part of the outer
-      edge of the debris (recall), because our pixels are 10 m against their 0.3–0.7 m.</p>
+    <p class="ev-note"><b>Honest reading:</b> what we map as <b>confirmed</b> is almost always real (high precision), but alone it
+      misses part of the outer edge of the debris, where radar and photos show little change. The lighter <b>possible damage</b>
+      zone (land next to real damage that is no higher above the river) closes most of that gap, and it adds nothing on the
+      no-flood test below. Its four settings were picked after checking against these maps, so we show both numbers.</p>
   </article>
 
   <!-- 5. no-flood test -->
@@ -458,7 +463,7 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-<script src="/static/app.js?v=20261012b"></script>
-<script src="/static/evidence.js?v=20261012b"></script>
+<script src="/static/app.js?v=20261014"></script>
+<script src="/static/evidence.js?v=20261014"></script>
 </body>
 </html>

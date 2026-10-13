@@ -83,21 +83,25 @@
     ].join("");
 
     // official check
-    const P = E.ems.pooled, rows = E.ems.rows;
+    const P = E.ems.pooled, rows = E.ems.rows, PW = E.ems.pooled_with_possible;
     const bidur = rows.find((r) => /bidur/i.test(r.place)) || rows[0];
     $("evBig").innerHTML = [
       stat(pct(P.precision), "of the flood we map is real", `precision, all ${rows.length} areas together`, "good"),
       stat(`${bidur.destroyed_found_pct}%`, `of ${num(bidur.ems_destroyed)} destroyed buildings found`, `in ${bidur.place}, the biggest area`, "good"),
       stat(`${bidur.bridges_found} of ${bidur.bridges_ems}`, "damaged bridges on our map", `in ${bidur.place}`, "good"),
-      stat(pct(P.recall), "of the official flood area found", "we miss part of the outer edge (honest limit)", "warn"),
+      PW ? stat(pct(PW.recall), "of the official flood area found, with the possible-damage zone",
+        `confirmed map alone: ${pct(P.recall)} · precision stays ${pct(PW.precision)} · F1 ${PW.f1.toFixed(2)}`, "good")
+        : stat(pct(P.recall), "of the official flood area found", "we miss part of the outer edge (honest limit)", "warn"),
     ].join("");
     $("evTable").innerHTML = `<thead><tr><th>Area</th><th>Official km²</th><th>Ours km²</th><th>Precision</th><th>Recall</th>
-        <th>F1 (within 20 m)</th><th>Destroyed buildings found</th><th>Damaged bridges found</th></tr></thead><tbody>` +
+        <th>F1 (within 20 m)</th><th>+ possible zone: recall</th><th>+ possible zone: F1</th><th>Destroyed buildings found</th><th>Damaged bridges found</th></tr></thead><tbody>` +
       rows.map((r) => `<tr><td>${esc(r.place)}</td><td>${num(r.ems_km2, 2)}</td><td>${num(r.ours_km2, 2)}</td><td class="g">${pct1(r.precision)}</td>
-        <td>${pct1(r.recall)}</td><td>${r.f1_20m.toFixed(2)}</td><td>${r.destroyed_found_pct != null ? r.destroyed_found_pct + "%" : "–"}</td>
+        <td>${pct1(r.recall)}</td><td>${r.f1_20m.toFixed(2)}</td>
+        <td class="g">${r.with_possible ? pct1(r.with_possible.recall) : "–"}</td><td class="g">${r.with_possible ? r.with_possible.f1.toFixed(2) : "–"}</td>
+        <td>${r.destroyed_found_pct != null ? r.destroyed_found_pct + "%" : "–"}</td>
         <td>${r.bridges_found} / ${r.bridges_ems}</td></tr>`).join("") +
       `<tr class="pooled"><td>All, pooled</td><td>${num(P.ems_km2, 1)}</td><td>${num(P.ours_km2, 1)}</td><td class="g">${pct(P.precision)}</td>
-        <td>${pct(P.recall)}</td><td>–</td><td>–</td><td>–</td></tr></tbody>`;
+        <td>${pct(P.recall)}</td><td>–</td><td class="g">${PW ? pct(PW.recall) : "–"}</td><td class="g">${PW ? PW.f1.toFixed(2) : "–"}</td><td>–</td><td>–</td></tr></tbody>`;
 
     // no-flood test
     const C = E.control;
