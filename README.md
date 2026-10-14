@@ -248,5 +248,7 @@ This project was built with help from **Claude Code (Anthropic)**, an AI coding 
 
 The runtime AI component uses **Groq** (`openai/gpt-oss-120b`) to write the copilot's text. Every number in that text is inserted by our code, never by the model.
 
+**Demo video:** the narration is an **AI voice made with ElevenLabs** (text-to-speech, elevenlabs.io). The pictures are real screen recordings of the working system. The recording scripts, the voice-to-picture sync and the subtitles were made with help from Claude Code; subtitle timing used the open-source Whisper speech-recognition model.
+
 ## Licence
 Code: MIT (see `LICENSE`). Data keeps its own licences (see attributions).

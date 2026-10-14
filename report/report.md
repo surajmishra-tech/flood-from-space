@@ -195,4 +195,4 @@ What these runs show:
 
 No training dataset was used: we chose the copilot as the AI component.
 
-**AI tools:** the code and first drafts of the documents were written with help from **Claude Code (Anthropic)**. The author chose the design, set up all data access, tested the system, reviewed the results and edited this report. The runtime copilot uses Groq-hosted `openai/gpt-oss-120b`; it never writes numbers.
+**AI tools:** the code and first drafts of the documents were written with help from **Claude Code (Anthropic)**. The author chose the design, set up all data access, tested the system, reviewed the results and edited this report. The runtime copilot uses Groq-hosted `openai/gpt-oss-120b`; it never writes numbers. The demo video's narration is an AI voice made with **ElevenLabs**; its screen recordings, sync and subtitles were made with help from Claude Code.
